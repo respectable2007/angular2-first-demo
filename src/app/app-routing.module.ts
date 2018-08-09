@@ -1,19 +1,29 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HeroesComponent } from './heroes/heroes.component'
-import { DashboardComponent } from './dashboard/dashboard.component'
-import { HeroDetailComponent } from './hero-detail/hero-detail.component'
+// import { HeroesComponent } from './heroes/heroes.component'
+// import { DashboardComponent } from './dashboard/dashboard.component'
+// import { HeroDetailComponent } from './hero-detail/hero-detail.component'
+import { LoginComponent } from './login/login.component'
+import { LayoutComponent } from './layout/layout.component'
+import { NotFoundComponent } from './not-found/not-found.component'
 
 const routes:Routes = [{
-   path: '', redirectTo: '/dashboard', pathMatch: 'full'
+	path: 'login', component: LoginComponent
 },{
-	path: 'heroes', component: HeroesComponent
+	path: 'layout', component: LayoutComponent
 },{
-	path: 'dashboard', component: DashboardComponent
+   path: '', redirectTo: '/login', pathMatch: 'full'
 },{
-	path: 'detail/:id', component: HeroDetailComponent
-}]
+	path: '**', component: NotFoundComponent
+}
+// ,
+// {
+// 	path: 'dashboard', component: DashboardComponent
+// },{
+// 	path: 'detail/:id', component: HeroDetailComponent
+// }
+]
 @NgModule({
   imports: [
     RouterModule.forRoot(routes)
