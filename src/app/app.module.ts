@@ -4,7 +4,7 @@ import { FormsModule} from '@angular/forms';
 // import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
+// import { InMemoryDataService } from './in-memory-data.service';
 
 import { AppComponent } from './app.component';
 
@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
 
 // import { HeroService } from './hero.service';
 // import { MessageService } from './message.service';
+import { LoginService } from './login.service';
 
 
 // import { Router } from '@angular/router';
@@ -50,9 +51,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
     // HttpModule,
     AppRoutingModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    ),
+    // HttpClientInMemoryWebApiModule.forRoot(
+    //   InMemoryDataService, { dataEncapsulation: false }
+    // ),
     BrowserAnimationsModule,
     MatButtonModule,
     MatCheckboxModule,
@@ -62,7 +63,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
   providers: [
     // HeroService,
     // MessageService,
-    InMemoryDataService
+    // InMemoryDataService
+    LoginService
   ],
   bootstrap: [AppComponent]
 })
