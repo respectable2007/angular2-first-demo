@@ -96,7 +96,7 @@ const uTF8Encode = function(string) {
   return output
 }
 
-export const MD5 = function(string) {
+export default function(s: string) {
   var x = []
   var k, AA, BB, CC, DD, a, b, c, d
   let S11 = 7

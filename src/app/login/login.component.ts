@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 // import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
+// import { Md5 } from 'ts-md5/dist/md5';
 
 // export class  MyErrorStateMatcher implements ErrorStateMatcher {
 // 	isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean{
@@ -32,7 +33,11 @@ export class LoginComponent implements OnInit {
   }
   
   submit(): void{
-  	this.loginService.login(this.model)
+    
+    let user = new LoginForm();
+    user.name = this.model.name;
+    // user.password = Md5.hashStr(this.model.name + this.model.password + 'adtime.com').toString()
+  	this.loginService.login(user)
         .subscribe(user => {
           console.log(user)
         })
