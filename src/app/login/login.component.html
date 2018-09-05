@@ -2,19 +2,19 @@
     <h1>滨江工商局</h1>
     <form #loginFrm='ngForm' (ngSubmit)='submit()'>
       <div class="form-group">
-        <label for="name">用户名</label>
-        <input type="text" class="form-control" id="name" 
-               [(ngModel)]="model.name" #name='ngModel' name='name'
+        <label for="username">用户名</label>
+        <input type="text" class="form-control" id="username" 
+               [(ngModel)]="model.username" #name='ngModel' name='username'
                required minlength="4" maxlength="10">
-        <div *ngIf="name.invalid && (name.dirty || name.touched)"
+        <div *ngIf="username.invalid && (username.dirty || username.touched)"
              class="alert">
-             <div *ngIf='name.errors.required'>
+             <div *ngIf='username.errors.required'>
              	用户名不可为空
              </div>
-             <div *ngIf='name.errors.minlength'>
+             <div *ngIf='username.errors.minlength'>
              	用户名位数不小于4
              </div>
-             <div *ngIf='name.errors.maxlength'>
+             <div *ngIf='username.errors.maxlength'>
              	用户名位数不超过10
              </div>
         </div>

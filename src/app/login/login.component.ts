@@ -13,7 +13,7 @@ import { MD5 } from '../../assets/md5';
 // }
 
 class LoginForm {
-  name: string;
+  username: string;
   password: string;
 }
 
@@ -35,8 +35,8 @@ export class LoginComponent implements OnInit {
   submit(): void{
     
     let user = new LoginForm();
-    user.name = this.model.name;
-    user.password = MD5.hasString(this.model.name + this.model.password + 'adtime.com')
+    user.username = this.model.username;
+    user.password = MD5.hasString(this.model.username + this.model.password + 'adtime.com')
   	this.loginService.login(user)
         .subscribe(user => {
           console.log(user)
