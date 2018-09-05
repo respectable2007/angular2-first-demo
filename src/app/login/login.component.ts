@@ -4,7 +4,7 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
 // import { Md5 } from 'ts-md5/dist/md5';
-
+import { MD5 } from '../../assets/md5';
 // export class  MyErrorStateMatcher implements ErrorStateMatcher {
 // 	isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean{
 // 		const isSubmitted = form && form.submitted;
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     
     let user = new LoginForm();
     user.name = this.model.name;
-    // user.password = Md5.hashStr(this.model.name + this.model.password + 'adtime.com').toString()
+    user.password = MD5.hasString(this.model.name + this.model.password + 'adtime.com')
   	this.loginService.login(user)
         .subscribe(user => {
           console.log(user)
