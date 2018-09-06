@@ -1,0 +1,14 @@
+.container{
+	width: 538px;
+	height: 618px;
+	padding: 48px 90px 0;
+	margin: 10% auto 0;
+	background: #efefef;
+	border: 1px solid #eee;
+	text-align: center;
+}
+.container h1{
+	color: #0d4d90;
+	font-size: 22px;
+	font-weight: 400;
+}

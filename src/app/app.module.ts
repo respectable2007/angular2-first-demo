@@ -1,5 +1,7 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { FormsModule} from '@angular/forms';
 // import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,10 +21,11 @@ import { AppComponent } from './app.component';
 import { LoginService } from './login.service';
 
 
-// import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './/app-routing.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { ElModule } from 'element-angular';
+
+// import { MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { LoginComponent } from './login/login.component';
 import { LayoutComponent } from './layout/layout.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -55,10 +58,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
     //   InMemoryDataService, { dataEncapsulation: false }
     // ),
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatFormFieldModule,
-    MatInputModule
+    ElModule.forRoot()
+    // MatButtonModule,
+    // MatCheckboxModule,
+    // MatFormFieldModule,
+    // MatInputModule
   ],
   providers: [
     // HeroService,

@@ -1,20 +1,20 @@
 <div class="container">
-    <h1>滨江工商局</h1>
-    <form #loginFrm='ngForm' (ngSubmit)='submit()'>
+    <h1>杭州高新区（滨江）市场监督管理局<br/>网络交易大数据监测平台</h1>
+    <!-- <form #loginFrm='ngForm' (ngSubmit)='submit()'>
       <div class="form-group">
-        <label for="username">用户名</label>
-        <input type="text" class="form-control" id="username" 
-               [(ngModel)]="model.username" #name='ngModel' name='username'
+        <label for="name">用户名</label>
+        <input type="text" class="form-control" id="name" 
+               [(ngModel)]="model.name" #name='ngModel' name='name'
                required minlength="4" maxlength="10">
-        <div *ngIf="username.invalid && (username.dirty || username.touched)"
+        <div *ngIf="name.invalid && (name.dirty || name.touched)"
              class="alert">
-             <div *ngIf='username.errors.required'>
+             <div *ngIf='name.errors.required'>
              	用户名不可为空
              </div>
-             <div *ngIf='username.errors.minlength'>
+             <div *ngIf='name.errors.minlength'>
              	用户名位数不小于4
              </div>
-             <div *ngIf='username.errors.maxlength'>
+             <div *ngIf='name.errors.maxlength'>
              	用户名位数不超过10
              </div>
         </div>
@@ -39,5 +39,16 @@
       </div>
 
       <button type="submit" class="btn btn-success" [disabled]="!loginFrm.form.valid">登录</button>
-    </form>
+    </form> -->
+    <el-form [formGroup]='validateForm' label-width='100px' [show-icon]='true' [show-message]='true' el-class='form-demo'>
+      <el-form-item [required]='true' [status]='statusCtrl("mail")' [error]='messageCtrl("mail")'>
+        <el-input formControlName='mail'></el-input>
+      </el-form-item>
+      <el-form-item [required]='true' [status]='statusCtrl("password")' [error]='messageCtrl("password")'>
+        <el-input formControlName='password' native-type='password'></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type='primary' (click)='submit()'>登录</el-button>
+      </el-form-item>
+    </el-form>
 </div>
