@@ -1,6 +1,6 @@
 import { Component, forwardRef, Inject, OnInit, ViewEncapsulation } from '@angular/core'
 import { FormBuilder, Validators, FormGroup, FormControl, AbstractControl } from '@angular/forms'
-// import { ErrorStateMatcher } from '@angular/material/core';
+import { ElNotificationService } from 'element-angular/release/element-angular.module';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
 import { MD5 } from '../../assets/md5';
@@ -31,10 +31,10 @@ export class LoginComponent implements OnInit {
 
   model = new LoginForm();
 
-  // matcher = new MyErrorStateMatcher();
   constructor(public router: Router, 
               private loginService: LoginService,
-              @Inject(forwardRef(() => FormBuilder)) private formBuilder: FormBuilder) { }
+              @Inject(forwardRef(() => FormBuilder)) private formBuilder: FormBuilder,
+              @Inject(forwardRef(() => ElNotificationService)) private notify: any) { }
 
   ngOnInit() {
     this.validateForm = this.formBuilder.group({
@@ -45,62 +45,66 @@ export class LoginComponent implements OnInit {
   
   // 登录
   submit(): void{
-    console.log(this.validateForm.value)
-    let user = new LoginForm();
-    user.name = this.model.name;
-    user.password = MD5.hasString(this.model.name + this.model.password + 'adtime.com')
-  	this.loginService.login(user)
-        .subscribe(user => {
-          if (user.code === 200) {
-            this.router.navigate(['/layout']);
-          }
-        })
+    // console.log(this.validateForm)
+    // if (!this.validateForm.invalid) {
+      let user = new LoginForm();
+      user.name = this.validateForm.value.name;
+      user.password = MD5.hasString(this.validateForm.value.name + this.validateForm.value.password + 'adtime.com')
+      this.loginService.login(user)
+          .subscribe(user => {
+            if (user.code === 200) {
+              this.router.navigate(['/layout']);
+            } else {
+              this.notify.error('账号或密码错误', '提示')
+            }
+          })
+    // }
   }
   
-  ctrl(item: string): AbstractControl {
-    return this.validateForm.controls[item]
-  }
+  // ctrl(item: string): AbstractControl {
+  //   return this.validateForm.controls[item]
+  // }
   
-  statusCtrl(item: string): string {
-    if (!this.validateForm.controls[item]) return
-    const control:AbstractControl = this.validateForm.controls[item]
-    return control.dirty && control.hasError('status') ? control.errors.status: ''
-  }
+  // statusCtrl(item: string): string {
+  //   if (!this.validateForm.controls[item]) return
+  //   const control:AbstractControl = this.validateForm.controls[item]
+  //   return control.dirty && control.hasError('status') ? control.errors.status: ''
+  // }
 
-  messageCtrl(item: string): string {
-    if (!this.validateForm.controls[item]) return
-    const control: AbstractControl = this.validateForm.controls[item]
-    return control.dirty && control.hasError('message') ? control.errors.message : ''
-  }
+  // messageCtrl(item: string): string {
+  //   if (!this.validateForm.controls[item]) return
+  //   const control: AbstractControl = this.validateForm.controls[item]
+  //   return control.dirty && control.hasError('message') ? control.errors.message : ''
+  // }
   
   private nameValidator = (control: FormControl): validateResult  => {
-    if (!control.value) {
-      return { status: 'error', message: '账号是必填的'}
-    }
+    // if (!control.value) {
+    //   return { status: 'error', message: '账号是必填的'}
+    // }
 
-    if (control.value.length < 4) {
-      return { status: 'error', message: '账号位数不小于4'}
-    }
+    // if (control.value.length < 4) {
+    //   return { status: 'error', message: '账号位数不小于4'}
+    // }
 
-    if (control.value.length > 10) {
-      return { status: 'error', message: '账号位数不超过10'}
-    }
+    // if (control.value.length > 10) {
+    //   return { status: 'error', message: '账号位数不超过10'}
+    // }
 
     return {status: 'success'}
   }
 
   private passwordValidator = (control: FormControl): validateResult => {
-    if (!control.value) {
-      return { status: 'error', message: '密码是必填的'}
-    }
+    // if (!control.value) {
+    //   return { status: 'error', message: '密码是必填的'}
+    // }
 
-    if (control.value.length < 8) {
-      return { status: 'error', message: '密码位数不小于8'}
-    }
+    // if (control.value.length < 8) {
+    //   return { status: 'error', message: '密码位数不小于8'}
+    // }
 
-    if (control.value.length > 16) {
-      return { status: 'error', message: '密码位数不超过16'}
-    }
+    // if (control.value.length > 16) {
+    //   return { status: 'error', message: '密码位数不超过16'}
+    // }
 
     return {status: 'success'}
   }
