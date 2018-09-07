@@ -11,4 +11,24 @@
 	color: #0d4d90;
 	font-size: 22px;
 	font-weight: 400;
+	margin-top: -80px;
+}
+.container .el-form{
+	padding: 40px 88px 0;
+}
+.container .el-input-group__append, .el-input-group__prepend{
+   padding: 0 5px;
+   background-color: #fff;
+}
+.el-form-item__content .el-button {
+	width: 100%;
+	margin-top: 30px;
+	height: 48px;
+}
+.rotate{
+	transform:rotate(-90deg);
+	-ms-transform:rotate(-90deg); 	/* IE 9 */
+	-moz-transform:rotate(-90deg); 	/* Firefox */
+	-webkit-transform:rotate(-90deg); /* Safari 和 Chrome */
+	-o-transform:rotate(-90deg); 	/* Opera */
 }

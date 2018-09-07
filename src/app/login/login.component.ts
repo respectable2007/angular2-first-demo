@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.validateForm = this.formBuilder.group({
       password: [ '', [this.passwordValidator]],
-      mail: [ '', [this.emailValidator]]
+      name: [ '', [this.nameValidator]]
     })
   }
   
@@ -73,17 +73,17 @@ export class LoginComponent implements OnInit {
     return control.dirty && control.hasError('message') ? control.errors.message : ''
   }
   
-  private emailValidator = (control: FormControl): validateResult  => {
+  private nameValidator = (control: FormControl): validateResult  => {
     if (!control.value) {
-      return { status: 'error', message: '用户名是必填的'}
+      return { status: 'error', message: '账号是必填的'}
     }
 
     if (control.value.length < 4) {
-      return { status: 'error', message: '用户名位数不小于4'}
+      return { status: 'error', message: '账号位数不小于4'}
     }
 
     if (control.value.length > 10) {
-      return { status: 'error', message: '用户名位数不超过10'}
+      return { status: 'error', message: '账号位数不超过10'}
     }
 
     return {status: 'success'}
@@ -91,15 +91,15 @@ export class LoginComponent implements OnInit {
 
   private passwordValidator = (control: FormControl): validateResult => {
     if (!control.value) {
-      return { status: 'error', message: '用户名是必填的'}
+      return { status: 'error', message: '密码是必填的'}
     }
 
     if (control.value.length < 8) {
-      return { status: 'error', message: '用户名位数不小于8'}
+      return { status: 'error', message: '密码位数不小于8'}
     }
 
     if (control.value.length > 16) {
-      return { status: 'error', message: '用户名位数不超过16'}
+      return { status: 'error', message: '密码位数不超过16'}
     }
 
     return {status: 'success'}

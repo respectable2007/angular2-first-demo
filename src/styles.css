@@ -20,13 +20,13 @@ body, input[text], button{
 	font-family: Arial, Helvetica, sans-serif;
 }*/
 
-/*@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+/*@import "~@angular/material/prebuilt-themes/indigo-pink.css";*/
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: 400;
   src: url(assets/iconfont/MaterialIcons-Regular.eot); /* For IE6-8 */
-/*  src: local('Material Icons'),
+  src: local('Material Icons'),
     local('MaterialIcons-Regular'),
     url(assets/iconfont/MaterialIcons-Regular.woff2) format('woff2'),
     url(assets/iconfont/MaterialIcons-Regular.woff) format('woff'),
@@ -37,7 +37,7 @@ body, input[text], button{
   font-weight: normal;
   font-style: normal;
   font-size: 24px;  /* Preferred icon size */
-  /*display: inline-block;
+  display: inline-block;
   line-height: 1;
   text-transform: none;
   letter-spacing: normal;
@@ -46,14 +46,14 @@ body, input[text], button{
   direction: ltr;*/
 
   /* Support for all WebKit browsers. */
-  /*-webkit-font-smoothing: antialiased;*/
+  -webkit-font-smoothing: antialiased;
   /* Support for Safari and Chrome. */
-  /*text-rendering: optimizeLegibility;*/
+  text-rendering: optimizeLegibility;
 
   /* Support for Firefox. */
-  /*-moz-osx-font-smoothing: grayscale;*/
+  -moz-osx-font-smoothing: grayscale;
 
   /* Support for IE. */
-  /*font-feature-settings: 'liga';*/
-/*}*/
+  font-feature-settings: 'liga';
+}
 @import "~element-angular/theme/index.css";
