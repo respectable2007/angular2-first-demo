@@ -15,11 +15,15 @@ class res{
   code: number;
   data: any
 }
-
+class validateResult {
+  status: string;
+  message?: string;
+}
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
 
@@ -57,6 +61,12 @@ export class LoginComponent implements OnInit {
     return this.validateForm.controls[item]
   }
   
+  statusCtrl(item: string): string {
+    if (!this.validateForm.controls[item]) return
+    const control:AbstractControl = this.validateForm.controls[item]
+    return control.dirty && control.hasError('status') ? control.errors.status: ''
+  }
+
   messageCtrl(item: string): string {
     if (!this.validateForm.controls[item]) return
     const control: AbstractControl = this.validateForm.controls[item]
@@ -75,5 +85,23 @@ export class LoginComponent implements OnInit {
     if (control.value.length > 10) {
       return { status: 'error', message: '用户名位数不超过10'}
     }
+
+    return {status: 'success'}
+  }
+
+  private passwordValidator = (control: FormControl): validateResult => {
+    if (!control.value) {
+      return { status: 'error', message: '用户名是必填的'}
+    }
+
+    if (control.value.length < 8) {
+      return { status: 'error', message: '用户名位数不小于8'}
+    }
+
+    if (control.value.length > 16) {
+      return { status: 'error', message: '用户名位数不超过16'}
+    }
+
+    return {status: 'success'}
   }
 }

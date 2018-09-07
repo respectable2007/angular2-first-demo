@@ -40,7 +40,7 @@
 
       <button type="submit" class="btn btn-success" [disabled]="!loginFrm.form.valid">登录</button>
     </form> -->
-    <el-form [formGroup]='validateForm' label-width='100px' [show-icon]='true' [show-message]='true' el-class='form-demo'>
+    <el-form [formGroup]='validateForm' [show-icon]='true' [show-message]='true' el-class='form-demo'>
       <el-form-item [required]='true' [status]='statusCtrl("mail")' [error]='messageCtrl("mail")'>
         <el-input formControlName='mail'></el-input>
       </el-form-item>
