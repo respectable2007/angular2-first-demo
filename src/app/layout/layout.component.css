@@ -1,0 +1,15 @@
+.el-header{
+	background: url(../../assets/header_bg.png);
+	line-height: 60px;
+	position: relative;
+}
+.el-header .title {
+   color:#fff;
+   text-decoration: none;
+   font-size: 18px;
+   font-weight: 600;
+}
+.el-header .user{
+	position: absolute;
+	right: 20px;
+}
