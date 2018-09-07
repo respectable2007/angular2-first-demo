@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs/observable/of';
-import { Hero } from './hero';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' })
@@ -14,6 +13,6 @@ export class LoginService {
   constructor(private http: HttpClient) { }
   login(user: any): Observable<any> {
   	let data:string ='username=' + user.name + '&password=' + user.password
-  	return this.http.post<Hero>(this.loginUrl, data, httpOptions)
+  	return this.http.post(this.loginUrl, data, httpOptions)
   }
 }
