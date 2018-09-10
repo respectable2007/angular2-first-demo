@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
 import { MD5 } from '../../assets/md5';
 import { ElModule } from 'element-angular';
+import { LocalStorageService } from 'angular-web-storage';
 
 
 class LoginForm {
@@ -34,7 +35,8 @@ export class LoginComponent implements OnInit {
   constructor(public router: Router, 
               private loginService: LoginService,
               @Inject(forwardRef(() => FormBuilder)) private formBuilder: FormBuilder,
-              @Inject(forwardRef(() => ElNotificationService)) private notify: any) { }
+              @Inject(forwardRef(() => ElNotificationService)) private notify: any,
+              public local: LocalStorageService) { }
 
   ngOnInit() {
     this.validateForm = this.formBuilder.group({
@@ -53,6 +55,7 @@ export class LoginComponent implements OnInit {
       this.loginService.login(user)
           .subscribe(user => {
             if (user.code === 200) {
+              this.local.set('username', this.validateForm.value.name)
               this.router.navigate(['/layout']);
             } else {
               this.notify.error('账号或密码错误', '提示')

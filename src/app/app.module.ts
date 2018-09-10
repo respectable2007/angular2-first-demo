@@ -25,6 +25,8 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './/app-routing.module';
 import { ElModule } from 'element-angular';
 
+import { AngularWebStorageModule } from 'angular-web-storage';
+
 // import { MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { LoginComponent } from './login/login.component';
 import { LayoutComponent } from './layout/layout.component';
@@ -58,7 +60,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     //   InMemoryDataService, { dataEncapsulation: false }
     // ),
     BrowserAnimationsModule,
-    ElModule.forRoot()
+    ElModule.forRoot(),
+    AngularWebStorageModule
     // MatButtonModule,
     // MatCheckboxModule,
     // MatFormFieldModule,

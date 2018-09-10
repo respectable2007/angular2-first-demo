@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LocalStorageService } from 'angular-web-storage';
 
 @Component({
   selector: 'app-layout',
@@ -14,10 +15,13 @@ export class LayoutComponent implements OnInit {
 	}, {
 	  value: '2',
 	  label: '退出登录',
-	}]
-  constructor(private router: Router) { }
+	}];
+  username:string = '';
+  constructor(private router: Router,
+  	          public local: LocalStorageService) { }
 
   ngOnInit() {
+  	this.username = this.local.get('username')
   }
   
   handle(e:any): void {
