@@ -54,6 +54,7 @@ export class LoginComponent implements OnInit {
         .subscribe(user => {
           if (user.code === 200) {
             this.local.set('username', this.validateForm.value.name)
+            this.local.set('isLogin', true)
             this.router.navigate(['/layout']);
           } else {
             this.notify.error('账号或密码错误', '提示')
