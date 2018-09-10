@@ -1,0 +1,22 @@
+<div class="aside-container">
+    <el-menu model="2" class="el-menu-vertical-demo" background-color='#304156' text-color='#fff'>
+      <el-submenu index="1">
+        <ng-template #title>
+          <i class="el-icon-message"></i>导航一
+        </ng-template>
+        <el-menu-item-group>
+          <el-menu-item index="1-1">选项1</el-menu-item>
+          <el-menu-item index="1-2">选项2</el-menu-item>
+        </el-menu-item-group>
+      </el-submenu>
+      <el-submenu index="2">
+      	<ng-template #title>
+          <i class="el-icon-menu"></i>导航二
+        </ng-template>
+        <el-menu-item-group>
+          <el-menu-item index="2-1">选项3</el-menu-item>
+        </el-menu-item-group>
+      </el-submenu>
+      <el-menu-item index="3"><i class="el-icon-setting"></i>导航三</el-menu-item>
+    </el-menu>
+</div>

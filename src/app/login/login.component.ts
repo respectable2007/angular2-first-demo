@@ -47,21 +47,18 @@ export class LoginComponent implements OnInit {
   
   // 登录
   submit(): void{
-    // console.log(this.validateForm)
-    // if (!this.validateForm.invalid) {
-      let user = new LoginForm();
-      user.name = this.validateForm.value.name;
-      user.password = MD5.hasString(this.validateForm.value.name + this.validateForm.value.password + 'adtime.com')
-      this.loginService.login(user)
-          .subscribe(user => {
-            if (user.code === 200) {
-              this.local.set('username', this.validateForm.value.name)
-              this.router.navigate(['/layout']);
-            } else {
-              this.notify.error('账号或密码错误', '提示')
-            }
-          })
-    // }
+    let user = new LoginForm();
+    user.name = this.validateForm.value.name;
+    user.password = MD5.hasString(this.validateForm.value.name + this.validateForm.value.password + 'adtime.com')
+    this.loginService.login(user)
+        .subscribe(user => {
+          if (user.code === 200) {
+            this.local.set('username', this.validateForm.value.name)
+            this.router.navigate(['/layout']);
+          } else {
+            this.notify.error('账号或密码错误', '提示')
+          }
+        })
   }
   
   // ctrl(item: string): AbstractControl {

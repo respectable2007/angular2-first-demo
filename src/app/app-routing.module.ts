@@ -7,11 +7,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component'
 import { LayoutComponent } from './layout/layout.component'
 import { NotFoundComponent } from './not-found/not-found.component'
+import { PasswordComponent } from './password/password.component'
 
 const routes:Routes = [{
 	path: 'login', component: LoginComponent
 },{
-	path: 'layout', component: LayoutComponent
+	path: 'layout', component: LayoutComponent, children: [{
+	  path: 'password', component: PasswordComponent
+	}]
 },{
    path: '', redirectTo: '/login', pathMatch: 'full'
 },{

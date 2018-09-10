@@ -31,6 +31,9 @@ import { AngularWebStorageModule } from 'angular-web-storage';
 import { LoginComponent } from './login/login.component';
 import { LayoutComponent } from './layout/layout.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { PasswordComponent } from './password/password.component';
+import { MainComponent } from './layout/main/main.component';
+import { AsideComponent } from './layout/aside/aside.component';
 
 
 @NgModule({
@@ -43,7 +46,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
     // HeroSearchComponent,
     LoginComponent,
     LayoutComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    PasswordComponent,
+    MainComponent,
+    AsideComponent
   ],
   imports: [
     BrowserModule,

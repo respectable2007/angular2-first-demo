@@ -36,6 +36,9 @@
 }
 @import "~normalize.css/normalize.css";
 @import "~element-angular/theme/index.css";
+html,body,.el-container{
+  height: 100%;
+}
 .el-header .user .el-dropdown span{
   color: #fff;
 }
