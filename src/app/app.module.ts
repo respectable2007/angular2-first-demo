@@ -10,12 +10,13 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { AppComponent } from './app.component';
 
 
-import { LoginService } from './login.service';
+import { LoginService } from './service/login.service';
+import { AuthService } from './service/auth.service';
 
 
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
-import { Guard } from './app.guard';
+// import { Guard } from './app.guard';
 
 import { AngularWebStorageModule } from 'angular-web-storage';
 
@@ -71,7 +72,8 @@ import { AsideComponent } from './layout/aside/aside.component';
     // MessageService,
     // InMemoryDataService
     LoginService,
-    Guard
+    AuthService
+    // Guard
   ],
   bootstrap: [AppComponent]
 })

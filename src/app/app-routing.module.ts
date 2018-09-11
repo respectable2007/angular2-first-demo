@@ -1,35 +1,32 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-// import { HeroesComponent } from './heroes/heroes.component'
-// import { DashboardComponent } from './dashboard/dashboard.component'
-// import { HeroDetailComponent } from './hero-detail/hero-detail.component'
+import { AuthService } from './service/auth.service';
+
 import { LoginComponent } from './login/login.component'
 import { LayoutComponent } from './layout/layout.component'
 import { NotFoundComponent } from './not-found/not-found.component'
 import { PasswordComponent } from './password/password.component'
 
-const routes:Routes = [{
+const whiteList:Routes = [{
 	path: 'login', component: LoginComponent
-},{
-	path: 'layout', component: LayoutComponent, children: [{
-	  path: 'password', component: PasswordComponent
-	}]
 },{
    path: '', redirectTo: '/login', pathMatch: 'full'
 },{
 	path: '**', component: NotFoundComponent
-}
-// ,
-// {
-// 	path: 'dashboard', component: DashboardComponent
-// },{
-// 	path: 'detail/:id', component: HeroDetailComponent
-// }
-]
+}]
+
+const controls:Routes = [{
+	path: 'layout', component: LayoutComponent,
+	canActivate: [AuthService],
+	children: [{
+	  path: 'password', component: PasswordComponent
+	}]
+}]
+
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(controls.concat(whiteList))
   ],
   exports: [RouterModule]
 })

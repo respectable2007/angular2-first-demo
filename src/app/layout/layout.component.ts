@@ -29,7 +29,8 @@ export class LayoutComponent implements OnInit {
          this.router.navigate(['password'])
   	} else {
   		this.router.navigate(['login'])
-        this.local.set('username', '')
+      this.local.set('username', '')
+      this.local.set('isLogin', false)
   	}
   }
 }

@@ -2,7 +2,7 @@ import { Component, forwardRef, Inject, OnInit, ViewEncapsulation } from '@angul
 import { FormBuilder, Validators, FormGroup, FormControl, AbstractControl } from '@angular/forms'
 import { ElNotificationService } from 'element-angular/release/element-angular.module';
 import { Router } from '@angular/router';
-import { LoginService } from '../login.service';
+import { LoginService } from '../service/login.service';
 import { MD5 } from '../../assets/md5';
 import { ElModule } from 'element-angular';
 import { LocalStorageService } from 'angular-web-storage';
