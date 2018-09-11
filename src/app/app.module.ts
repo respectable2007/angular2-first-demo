@@ -33,48 +33,26 @@ import { AsideComponent } from './layout/aside/aside.component';
 @NgModule({
   declarations: [
     AppComponent,
-    // HeroesComponent,
-    // HeroDetailComponent,
-    // MessagesComponent,
-    // DashboardComponent,
-    // HeroSearchComponent,
     LoginComponent,
     LayoutComponent,
     NotFoundComponent,
-    // PasswordComponent,
     MainComponent,
     AsideComponent
   ],
   imports: [
     BrowserModule,
-    // FormControl,
-    // FormGroupDirective,
-    // NgForm,
-    // Validators,
     ReactiveFormsModule,
     FormsModule,
-    // HttpModule,
     LayoutModule,
     AppRoutingModule,
     HttpClientModule,
-    // HttpClientInMemoryWebApiModule.forRoot(
-    //   InMemoryDataService, { dataEncapsulation: false }
-    // ),
     BrowserAnimationsModule,
     ElModule.forRoot(),
     AngularWebStorageModule
-    // MatButtonModule,
-    // MatCheckboxModule,
-    // MatFormFieldModule,
-    // MatInputModule
   ],
   providers: [
-    // HeroService,
-    // MessageService,
-    // InMemoryDataService
     LoginService,
     AuthService
-    // Guard
   ],
   bootstrap: [AppComponent]
 })

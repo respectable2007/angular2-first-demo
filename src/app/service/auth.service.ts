@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router, CanActivate } from '@angular/router';
+import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { LocalStorageService } from 'angular-web-storage';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginService } from '../service/login.service';
@@ -11,7 +11,7 @@ export class AuthService implements CanActivate {
   	          public local:LocalStorageService,
   	          public http:HttpClient,
   	          public loginService:LoginService) { }
-  canActivate(): boolean {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
   	if (!this.local.get('isLogin')) {
       this.router.navigate(['login'])
       return false;
