@@ -6,7 +6,7 @@ import { AuthService } from './service/auth.service';
 import { LoginComponent } from './login/login.component'
 import { LayoutComponent } from './layout/layout.component'
 import { NotFoundComponent } from './not-found/not-found.component'
-import { PasswordComponent } from './password/password.component'
+// import { PasswordComponent } from './password/password.component'
 
 const whiteList:Routes = [{
 	path: 'login', component: LoginComponent
@@ -20,7 +20,7 @@ const controls:Routes = [{
 	path: 'layout', component: LayoutComponent,
 	canActivate: [AuthService],
 	children: [{
-	  path: 'password', component: PasswordComponent
+	  // path: 'password', component: PasswordComponent
 	}]
 }]
 

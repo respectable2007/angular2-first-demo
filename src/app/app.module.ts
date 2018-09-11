@@ -16,7 +16,7 @@ import { AuthService } from './service/auth.service';
 
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
-// import { Guard } from './app.guard';
+import { LayoutModule } from './layout/layout.module';
 
 import { AngularWebStorageModule } from 'angular-web-storage';
 
@@ -25,7 +25,7 @@ import { ElModule } from 'element-angular';
 import { LoginComponent } from './login/login.component';
 import { LayoutComponent } from './layout/layout.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { PasswordComponent } from './password/password.component';
+// import { PasswordComponent } from './password/password.component';
 import { MainComponent } from './layout/main/main.component';
 import { AsideComponent } from './layout/aside/aside.component';
 
@@ -41,7 +41,7 @@ import { AsideComponent } from './layout/aside/aside.component';
     LoginComponent,
     LayoutComponent,
     NotFoundComponent,
-    PasswordComponent,
+    // PasswordComponent,
     MainComponent,
     AsideComponent
   ],
@@ -54,6 +54,7 @@ import { AsideComponent } from './layout/aside/aside.component';
     ReactiveFormsModule,
     FormsModule,
     // HttpModule,
+    LayoutModule,
     AppRoutingModule,
     HttpClientModule,
     // HttpClientInMemoryWebApiModule.forRoot(
