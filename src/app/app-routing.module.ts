@@ -9,6 +9,8 @@ import { NotFoundComponent } from './not-found/not-found.component'
 const whiteList:Routes = [{
 	path: 'login', component: LoginComponent
 },{
+  path: 'layout',redirectTo: '/login'
+},{
    path: '', redirectTo: '/login', pathMatch: 'full'
 },{
 	path: '**', component: NotFoundComponent

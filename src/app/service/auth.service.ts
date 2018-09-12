@@ -19,8 +19,7 @@ export class AuthService implements CanActivate {
   	this.loginService.menu()
         .subscribe(user => {
           if (user.code === 200) {
-          	console.log(user)
-            this.router.navigate(['/layout/password']);
+            this.router.navigate(['layout/auth']);
           } 
         })
   	return true;
