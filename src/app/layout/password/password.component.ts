@@ -4,6 +4,7 @@ import { LoginService } from '../../service/login.service';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'angular-web-storage';
 import { MD5 } from '../../../assets/md5';
+import { ElNotificationService } from 'element-angular/release/element-angular.module';
 class res {
   status: string;
   message?:string;
@@ -23,6 +24,7 @@ export class PasswordComponent implements OnInit {
   pwdFrm: FormGroup;
   constructor(
     @Inject(forwardRef(() => FormBuilder)) private formBuilder: FormBuilder,
+    @Inject(forwardRef(() => ElNotificationService)) private notify: any,
     private http:LoginService,
     private router:Router,
     private local:LocalStorageService
@@ -37,9 +39,6 @@ export class PasswordComponent implements OnInit {
   }
   // 修改密码
   submit(): void {
-    console.log(this.pwdFrm)
-    console.log(this.pwdFrm.valid)
-    
     if (this.pwdFrm.valid) {
       const username = this.local.get('username')
       let data:any = {
@@ -51,6 +50,8 @@ export class PasswordComponent implements OnInit {
                .subscribe(result => {
                  if (result.code === 200) {
                    this.router.navigate(['layout'])
+                 } else {
+                   this.notify.error(result.msg, '提示')
                  }
                })
     }
@@ -75,7 +76,7 @@ export class PasswordComponent implements OnInit {
     if (!control.value) {
       return { status: 'error', message: '请输入旧密码'}
     }
-    return { status: 'success'}
+    // return { status: 'success'}
   }
 
   private newPwdValidator = (control: FormGroup): res => {
@@ -91,7 +92,7 @@ export class PasswordComponent implements OnInit {
     if (control.value.length > 12) {
       return { status: 'error', message: '长度不小于12位'}
     } 
-    return { status: 'success'}
+    // return { status: 'success'}
   }
 
   private toNewPwdValidator = (control: FormGroup): res => {
@@ -110,6 +111,6 @@ export class PasswordComponent implements OnInit {
     if (control.value !== this.pwdFrm.controls['newPassword'].value) {
       return { status: 'error', message: '确认新密码与新密码不一致'}
     }
-    return { status: 'success'}
+    // return { status: 'success'}
   }
 }
