@@ -7,6 +7,7 @@ import { PasswordComponent }    from './password/password.component';
 
 const layoutRoutes: Routes = [{
   path: 'layout', component: LayoutComponent,
+  // redirectTo: '/home',
   canActivate: [AuthService],
   children:[{ path: 'password',  component: PasswordComponent }]
 }];

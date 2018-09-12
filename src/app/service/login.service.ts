@@ -6,9 +6,14 @@ import { of } from 'rxjs/observable/of';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' })
 };
+const httpJson = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json;charset=utf-8' })
+};
+httpJson.headers.append('t', (new Date().getTime()).toString())
 const API = {
-  POST_LOGIN: '/dmss/login/authenticate?t=' + new Date().getTime(), // 登录
+  POST_LOGIN: '/dmss/login/authenticate', // 登录
   GET_MENU_LIST: '/dmss/user/menu/list', // 获取用户菜单
+  UPDATE_USER_PASSWORD: '/dmss/user/password/update' // 修改密码
 }
 @Injectable()
 export class LoginService {
@@ -19,5 +24,8 @@ export class LoginService {
   }
   menu(): Observable<any> {
   	return this.http.get(API.GET_MENU_LIST)
+  }
+  updatePassword(data:any): Observable<any> {
+    return this.http.post(API.UPDATE_USER_PASSWORD, data, httpJson)
   }
 }
