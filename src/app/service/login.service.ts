@@ -17,7 +17,6 @@ const API = {
   
   // 权限管理
   GET_ROLE_LIST: '/dmss/role/list', // 角色列表// 活动列表
-  GET_USER_LIST: '/dmss/user/list', // 用户列表
   ADD_ROLE: '/dmss/role/add', // 新增角色
   DEL_ROLE: '/dmss/role/delete', // 删除角色
   UPDATE_ROLE: '/dmss/role/update', // 修改角色信息
@@ -44,5 +43,8 @@ export class LoginService {
   }
   getRoleList(): Observable<any> {
     return this.http.get(API.GET_ROLE_LIST)
+  }
+  addRole(data:any): Observable<any> {
+    return this.http.post(API.ADD_ROLE, data, httpJson)
   }
 }

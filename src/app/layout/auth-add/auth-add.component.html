@@ -6,9 +6,9 @@
     <el-input formControlName="roleName" style='width:500px' placeholder='请输入角色名称'></el-input>
   </el-form-item>
 
-  <el-form-item label="权限授权" [required]="true"
-    [status]="statusCtrl('tree')" [error]="messageCtrl('tree')">
+  <el-form-item label="权限授权" >
     <el-tree [model]="treeList" [show-checkbox]="true" #tree></el-tree>
+    <span class='el-form-item__error ng-star-inserted' *ngIf='showError'>请至少选择一个权限菜单</span>
   </el-form-item>
   
   <el-form-item>
