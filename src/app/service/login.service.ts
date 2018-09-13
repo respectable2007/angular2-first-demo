@@ -42,4 +42,7 @@ export class LoginService {
   updatePassword(data:any): Observable<any> {
     return this.http.post(API.UPDATE_USER_PASSWORD, data, httpJson)
   }
+  getRoleList(): Observable<any> {
+    return this.http.get(API.GET_ROLE_LIST)
+  }
 }

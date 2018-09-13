@@ -9,6 +9,7 @@ import { LayoutRoutingModule }    from './layout-routing.module';
 
 import { PasswordComponent }    from './password/password.component';
 import { AuthoritionComponent }    from './authorition/authorition.component';
+import { AuthAddComponent } from './auth-add/auth-add.component';
 
  
 @NgModule({
@@ -22,7 +23,8 @@ import { AuthoritionComponent }    from './authorition/authorition.component';
   ],
   declarations: [
     PasswordComponent,
-    AuthoritionComponent
+    AuthoritionComponent,
+    AuthAddComponent
   ],
   providers: [ LayoutService ]
 })
