@@ -8,6 +8,7 @@ const httpOptions = {
 };
 const httpJson = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json;charset=utf-8' })
+  params: null
 };
 httpJson.headers.append('t', (new Date().getTime()).toString())
 const API = {
@@ -41,8 +42,9 @@ export class LoginService {
   updatePassword(data:any): Observable<any> {
     return this.http.post(API.UPDATE_USER_PASSWORD, data, httpJson)
   }
-  getRoleList(): Observable<any> {
-    return this.http.get(API.GET_ROLE_LIST)
+  getRoleList(data:any): Observable<any> {
+    httpJson.params = data
+    return this.http.get(API.GET_ROLE_LIST,httpJson)
   }
   addRole(data:any): Observable<any> {
     return this.http.post(API.ADD_ROLE, data, httpJson)

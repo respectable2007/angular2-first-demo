@@ -11,3 +11,7 @@
     </ng-template>
   </el-table-column>
 </el-table>
+<el-pagination [total]="page.recordTotal" [page-sizes]="[10,20,30,40]"
+    [layout]="['prev', 'pager', 'next', 'total']"
+    (modelChange)='handleChange($event)'>
+</el-pagination>

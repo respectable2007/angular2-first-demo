@@ -11,6 +11,11 @@ export class AuthoritionComponent implements OnInit {
   
   authList:any[] = []
 
+  page:any = {
+    recordTotal: 0,
+    pageNum: 1,
+    pageSize: 10
+  }
   constructor(private http:LoginService,
   	          private router:Router) { }
 
@@ -20,10 +25,14 @@ export class AuthoritionComponent implements OnInit {
 
   // 获取角色列表
   getRoleList() {
-    this.http.getRoleList()
+    this.http.getRoleList(this.page)
              .subscribe(res => {
              	if (res.code === 200) {
              	  this.authList = res.data.list
+                this.page = {
+                  recordTotal: res.data.recordTotal,
+                  pageNum: res.data.pageNum
+                }
              	}
              })
   }
@@ -41,5 +50,11 @@ export class AuthoritionComponent implements OnInit {
   // 删除
   handleDel(scope:any) {
 
+  }
+
+  handleChange(e:any) {
+     if (e === this.page.pageNum) return
+    this.page.pageNum = e
+    this.getRoleList()
   }
 }
