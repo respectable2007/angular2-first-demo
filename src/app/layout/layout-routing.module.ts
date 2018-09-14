@@ -13,7 +13,7 @@ const layoutRoutes: Routes = [{
   canActivate: [AuthService],
   children:[{ path: 'password',  component: PasswordComponent },
   { path: 'auth',  component: AuthoritionComponent},
-  { path: 'auth/add',  component: AuthAddComponent}]
+  { path: 'auth/add/:id',  component: AuthAddComponent}]
 }];
  
 @NgModule({

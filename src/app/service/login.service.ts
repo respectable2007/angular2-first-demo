@@ -7,8 +7,8 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' })
 };
 const httpJson = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json;charset=utf-8' })
-  params: null
+  headers: new HttpHeaders({ 'Content-Type': 'application/json;charset=utf-8' }),
+  params: {}
 };
 httpJson.headers.append('t', (new Date().getTime()).toString())
 const API = {
@@ -20,6 +20,7 @@ const API = {
   GET_ROLE_LIST: '/dmss/role/list', // 角色列表// 活动列表
   ADD_ROLE: '/dmss/role/add', // 新增角色
   DEL_ROLE: '/dmss/role/delete', // 删除角色
+  GET_AUTH_BY_ID: '/dmss/menu/list_by_role', // 根据id获取角色列表
   UPDATE_ROLE: '/dmss/role/update', // 修改角色信息
 
    // 广告监测
@@ -48,5 +49,14 @@ export class LoginService {
   }
   addRole(data:any): Observable<any> {
     return this.http.post(API.ADD_ROLE, data, httpJson)
+  }
+  delRole(data:any): Observable<any> {
+    httpJson.params = data
+    return this.http.get(API.DEL_ROLE,httpJson)
+  }
+  roleDetail(data:any): Observable<any> {
+    httpJson.params = data
+    console.log(data)
+    return this.http.get(API.GET_AUTH_BY_ID)
   }
 }

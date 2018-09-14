@@ -3,7 +3,9 @@ import { UserSafeHooks } from 'element-angular/release/tree/tree';
 
 import { FormBuilder, Validators, FormGroup, FormControl, AbstractControl} from '@angular/forms';
 import { LoginService } from '../../service/login.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
+
 class res {
   status: string;
   message?:string;
@@ -30,16 +32,24 @@ export class AuthAddComponent implements OnInit, AfterViewInit {
   menuIdList:number[] = [];
   showError:boolean = false;
 
+  roleId:number;
+
   constructor(
     @Inject(forwardRef(() => FormBuilder)) private formBuilder: FormBuilder,
     private http:LoginService,
-    private router:Router ) { }
+    private router:Router,
+    private route:ActivatedRoute ) { }
 
   ngOnInit() {
+    this.route.paramMap.pipe(
+    switchMap((params: ParamMap) => {
+      // this.http.roleDetail({roleId:params.get('id')}))
+      this.roleId = +params.get('id')
+      // console.log(params.get('id'))
+    })
+    console.log(this.roleId)
   	this.roleFrm = this.formBuilder.group({
   	  roleName: ['', [this.nameValidator]]
-  	  // ,
-  	  // tree: ['', [this.treeValidator]]
   	})
   	this.getAuthList()
   }

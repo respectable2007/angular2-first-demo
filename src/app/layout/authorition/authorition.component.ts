@@ -36,10 +36,9 @@ export class AuthoritionComponent implements OnInit {
              	}
              })
   }
-  
   // 新增
   handleAdd() {
-    this.router.navigate(['layout/auth/add'])
+    this.router.navigate(['layout/auth/add/0'])
   }
 
   // 编辑
@@ -49,7 +48,12 @@ export class AuthoritionComponent implements OnInit {
   
   // 删除
   handleDel(scope:any) {
-
+    this.http.delRole({roleId:scope.rowData.id})
+             .subscribe(res => {
+               if (res.code === 200) {
+                 this.getRoleList()
+               }
+             })
   }
 
   handleChange(e:any) {
