@@ -56,7 +56,9 @@ export class LoginService {
   }
   roleDetail(data:any): Observable<any> {
     httpJson.params = data
-    console.log(data)
-    return this.http.get(API.GET_AUTH_BY_ID)
+    return this.http.get(API.GET_AUTH_BY_ID, httpJson)
+  }
+  updateRole(data:any): Observable<any> {
+    return this.http.post(API.UPDATE_ROLE, data, httpJson)
   }
 }

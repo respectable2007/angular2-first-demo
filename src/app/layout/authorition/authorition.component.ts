@@ -43,7 +43,8 @@ export class AuthoritionComponent implements OnInit {
 
   // 编辑
   handleEidt(scope:any) {
-
+    let path = 'layout/auth/add/' + scope.rowData.id
+    this.router.navigate([path])
   }
   
   // 删除

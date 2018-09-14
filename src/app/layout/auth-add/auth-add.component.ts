@@ -3,8 +3,7 @@ import { UserSafeHooks } from 'element-angular/release/tree/tree';
 
 import { FormBuilder, Validators, FormGroup, FormControl, AbstractControl} from '@angular/forms';
 import { LoginService } from '../../service/login.service';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { Router, ActivatedRoute } from '@angular/router';
 
 class res {
   status: string;
@@ -32,26 +31,30 @@ export class AuthAddComponent implements OnInit, AfterViewInit {
   menuIdList:number[] = [];
   showError:boolean = false;
 
-  roleId:number;
+  private roleId:number;
 
   constructor(
     @Inject(forwardRef(() => FormBuilder)) private formBuilder: FormBuilder,
-    private http:LoginService,
-    private router:Router,
-    private route:ActivatedRoute ) { }
+    private http: LoginService,
+    private router: Router,
+    private route: ActivatedRoute ) { }
 
   ngOnInit() {
-    this.route.paramMap.pipe(
-    switchMap((params: ParamMap) => {
-      // this.http.roleDetail({roleId:params.get('id')}))
-      this.roleId = +params.get('id')
-      // console.log(params.get('id'))
-    })
-    console.log(this.roleId)
+    this.roleId = +this.route.snapshot.paramMap.get('id')
   	this.roleFrm = this.formBuilder.group({
   	  roleName: ['', [this.nameValidator]]
   	})
   	this.getAuthList()
+    if (this.roleId) {
+      this.http.roleDetail({roleId: this.roleId})
+               .subscribe(result => {
+                 if (result.code === 200) {
+                   this.roleFrm.setValue({roleName: result.data.role.roleName})
+                   let list = this.getChecked(result.data.menuList)
+                   this.updateItemChecked(list)
+                 }
+               })
+    }
   }
   // etree方法初始化
   ngAfterViewInit(){
@@ -65,12 +68,24 @@ export class AuthAddComponent implements OnInit, AfterViewInit {
   	if (this.roleFrm.valid && !this.showError) {
   	  this.menuIdList = []
   	  this.getAuthId(this.treeList)
-  	  this.http.addRole({roleName: this.roleFrm.value.roleName, menuIdList: this.menuIdList})
-  	           .subscribe(result => {
-  	             if (result.code === 200) {
-                   this.router.navigate(['layout/auth'])
-  	             }
-  	           })
+      if (this.roleId) {
+        this.http.updateRole({
+          id: this.roleId,
+          menuIdList: this.menuIdList,
+          roleName: this.roleFrm.value.roleName
+        }).subscribe(result => {
+          if (result.code === 200) {
+             this.router.navigate(['layout/auth'])
+           }
+        })
+      } else {
+        this.http.addRole({roleName: this.roleFrm.value.roleName, menuIdList: this.menuIdList})
+         .subscribe(result => {
+           if (result.code === 200) {
+             this.router.navigate(['layout/auth'])
+           }
+         })
+      }
   	}
   }
   // 返回
@@ -115,6 +130,31 @@ export class AuthAddComponent implements OnInit, AfterViewInit {
        if (item.children.length) {
        	 this.getAuthId(item.children)
        }
+    }
+  }
+  // 获取选中项
+  getChecked(data:any): any[] {
+    let array:any[] = [];
+    for(let item of data) {
+      if(item.subMenuList.length > 0) {
+        for(let i of item.subMenuList) {
+          if (i.status === 1) {
+            array.push(i.id)
+          }
+        }
+      } else {
+        if (item.status === 1 && item.parentId === 0) {
+          array.push(item.id)
+        }
+      }
+    }
+    return array
+  }
+  // 更新选中项
+  updateItemChecked(data:any):void {
+    if (!data.length) return
+    for (let item of data) {
+      this.hooks.updateItemChecked(item)
     }
   }
   // 验证规则
