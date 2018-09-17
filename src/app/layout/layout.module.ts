@@ -10,6 +10,7 @@ import { LayoutRoutingModule }    from './layout-routing.module';
 import { PasswordComponent }    from './password/password.component';
 import { AuthoritionComponent }    from './authorition/authorition.component';
 import { AuthAddComponent } from './auth-add/auth-add.component';
+import { AsdvertComponent } from './asdvert/asdvert.component';
 
  
 @NgModule({
@@ -24,7 +25,8 @@ import { AuthAddComponent } from './auth-add/auth-add.component';
   declarations: [
     PasswordComponent,
     AuthoritionComponent,
-    AuthAddComponent
+    AuthAddComponent,
+    AsdvertComponent
   ],
   providers: [ LayoutService ]
 })

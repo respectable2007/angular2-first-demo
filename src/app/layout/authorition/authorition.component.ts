@@ -38,12 +38,12 @@ export class AuthoritionComponent implements OnInit {
   }
   // 新增
   handleAdd() {
-    this.router.navigate(['layout/auth/add/0'])
+    this.router.navigate(['layout/authorition/editinfo/0'])
   }
 
   // 编辑
   handleEidt(scope:any) {
-    let path = 'layout/auth/add/' + scope.rowData.id
+    let path = 'layout/authorition/editinfo/' + scope.rowData.id
     this.router.navigate([path])
   }
   

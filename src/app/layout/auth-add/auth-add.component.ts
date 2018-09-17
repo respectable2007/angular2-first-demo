@@ -75,14 +75,14 @@ export class AuthAddComponent implements OnInit, AfterViewInit {
           roleName: this.roleFrm.value.roleName
         }).subscribe(result => {
           if (result.code === 200) {
-             this.router.navigate(['layout/auth'])
+             this.router.navigate(['layout/authorition'])
            }
         })
       } else {
         this.http.addRole({roleName: this.roleFrm.value.roleName, menuIdList: this.menuIdList})
          .subscribe(result => {
            if (result.code === 200) {
-             this.router.navigate(['layout/auth'])
+             this.router.navigate(['layout/authorition'])
            }
          })
       }
@@ -90,7 +90,7 @@ export class AuthAddComponent implements OnInit, AfterViewInit {
   }
   // 返回
   handleBack() {
-  	this.router.navigate(['layout/auth'])
+  	this.router.navigate(['layout/authorition'])
   }
   // 获取权限列表
   getAuthList() {
