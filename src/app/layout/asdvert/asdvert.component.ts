@@ -1,5 +1,7 @@
 import { Component, OnInit, Inject, forwardRef } from '@angular/core';
 import { FormGroup, AbstractControl, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { LoginService } from '../../service/login.service';
+
 class res {
   message:string;
 }
@@ -11,23 +13,38 @@ class res {
 export class AsdvertComponent implements OnInit {
   
   searchFrm: FormGroup;
+  platList:any[] = [];
+  asdList:any[] = [];
 
   constructor(
-  	@Inject(forwardRef(() => FormBuilder)) private formBuilder: FormBuilder) { }
+  	@Inject(forwardRef(() => FormBuilder)) private formBuilder: FormBuilder,
+    private service: LoginService) { }
 
   ngOnInit() {
   	this.searchFrm = this.formBuilder.group({
   		comName: ['', this.comNameValidator],
   		keyword: ['', this.keywordValidator],
+      platName: '',
   		pubStartDate: ['', this.pubStartDateValidator],
   		pubEndDate: ['', this.pubEndDateValidator],
   		dataCollectStartDate: ['', this.dataCollectStartDateValidator],
   		dataCollectEndDate: ['', this.dataCollectEndDateValidator]
   	})
+    this.getPlatList()
   }
 
   handleSearch() {
-
+    if (this.searchFrm.valid) {
+      this.service.getAsdvertList(Object.assign(this.searchFrm.value, {
+        pageNum: 1,
+        pageSize: 10,
+        exportType: 1
+      })).subscribe(result => {
+        if (result.code === 200) {
+          this.asdList = result.data.list
+        }
+      })
+    }
   }
 
   // 日期控件清空事件
@@ -50,6 +67,15 @@ export class AsdvertComponent implements OnInit {
     this.searchFrm.setValue( Object.assign(this.searchFrm.value,{
       dataCollectEndDate: ''
     }))
+  }
+
+  getPlatList() {
+    this.service.getPlatList()
+                .subscribe(result => {
+                  if (result.code === 200) {
+                    this.platList = result.data
+                  }
+                })
   }
 
   messageCtrl(item: string):string {
@@ -87,9 +113,7 @@ export class AsdvertComponent implements OnInit {
   }
 
   private dataCollectStartDateValidator = (control:FormGroup): res => {
-    console.log(control.value)
     if (control.value && this.searchFrm.controls['dataCollectEndDate'].value) {
-    console.log(this.searchFrm.controls['dataCollectEndDate'].value)
     	if (Date.parse(control.value.replace(/-/g, '/')) > Date.parse(this.searchFrm.controls['dataCollectEndDate'].value.replace(/-/g, '/'))) {
           return { message: '结束时间应大于起始时间'}
     	}

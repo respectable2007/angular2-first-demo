@@ -13,9 +13,9 @@
   </div>
   <div el-row>
     <div el-col span='9'>
-      <el-form-item label='企业名称'>
-        <el-select placeholder='请选择平台/网站' style='width:100%'>
-          <el-option *ngFor='let item plateList'
+      <el-form-item label='平台'>
+        <el-select placeholder='请选择平台' style='width:100%' popper-class='dmss-select' formControlName='platName'>
+          <el-option *ngFor='let item of platList'
                      [label]='item.platName'
                      [value]='item.platName'></el-option>
         </el-select>
@@ -60,7 +60,29 @@
   </div>
   <div el-row>
     <el-form-item label-width='150px'>
-      <el-button type='success' (click)='handleSearch'>查询</el-button>
+      <el-button type='success' (click)='handleSearch()'>查询</el-button>
     </el-form-item>
   </div>
 </el-form>
+<el-table [model]='asdList' center='all'>
+  <el-table-column label='企业名称' model-key='comName'></el-table-column>
+  <el-table-column label='店铺名称' model-key='shopName'></el-table-column>
+  <el-table-column label='商品名称' model-key='productName'></el-table-column>
+  <el-table-column label='平台名称' model-key='platName'></el-table-column>
+  <el-table-column label='URL'>
+    <ng-template #slot let-scope='scope'>
+      <a href="" target="blank">{{scope.rowData.productURL}}</a>
+    </ng-template>
+  </el-table-column>
+  <el-table-column label='涉及违禁词' model-key='illegalWord'></el-table-column>
+  <el-table-column label='违禁词数量' model-key='illegalWordCnt'></el-table-column>
+  <el-table-column label='涉嫌违法行为' model-key='illegalDesc'></el-table-column>
+  <el-table-column label='对应法规' model-key='lawsRuleDesc'></el-table-column>
+  <el-table-column label='发布时间' model-key='productPubDate'></el-table-column>
+  <el-table-column label='数据采集时间' model-key='dataCollectDate'></el-table-column>
+  <el-table-column label='操作'>
+    <ng-template #slot let-scope='scope'>
+      <el-button type='text' size='small' (click)='handleDetail(scope)'>操作</el-button>
+    </ng-template>
+  </el-table-column>
+</el-table>

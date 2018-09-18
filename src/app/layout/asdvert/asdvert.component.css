@@ -1,0 +1,5 @@
+.el-select-dropdown.dmss-select .el-scrollbar__view.el-select-dropdown__list {
+	max-height: 300px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}

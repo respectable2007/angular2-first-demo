@@ -16,6 +16,8 @@ const API = {
   GET_MENU_LIST: '/dmss/user/menu/list', // 获取用户菜单
   UPDATE_USER_PASSWORD: '/dmss/user/password/update', // 修改密码
   
+  GET_PLAT_LIST: '/dmss/resource/getPlatList', //获取平台列表
+
   // 权限管理
   GET_ROLE_LIST: '/dmss/role/list', // 角色列表// 活动列表
   ADD_ROLE: '/dmss/role/add', // 新增角色
@@ -40,9 +42,12 @@ export class LoginService {
   menu(): Observable<any> {
   	return this.http.get(API.GET_MENU_LIST)
   }
+
   updatePassword(data:any): Observable<any> {
     return this.http.post(API.UPDATE_USER_PASSWORD, data, httpJson)
   }
+
+  // 权限管理
   getRoleList(data:any): Observable<any> {
     httpJson.params = data
     return this.http.get(API.GET_ROLE_LIST,httpJson)
@@ -60,5 +65,15 @@ export class LoginService {
   }
   updateRole(data:any): Observable<any> {
     return this.http.post(API.UPDATE_ROLE, data, httpJson)
+  }
+
+  // 广告监测
+  getAsdvertList(data:any): Observable<any> {
+    httpJson.params = data
+    return this.http.get(API.GET_ADVERT_LIST, httpJson)
+  }
+  getPlatList(): Observable<any> {
+    httpJson.params = {}
+    return this.http.get(API.GET_PLAT_LIST, httpJson)
   }
 }

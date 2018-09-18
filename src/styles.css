@@ -42,3 +42,8 @@ html,body,.el-container{
 .el-header .user .el-dropdown span{
   color: #fff;
 }
+.el-select-dropdown.dmss-select .el-scrollbar__view.el-select-dropdown__list {
+  max-height: 300px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
