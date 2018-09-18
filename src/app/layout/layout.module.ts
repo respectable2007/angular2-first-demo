@@ -17,8 +17,8 @@ import { AsdvertComponent } from './asdvert/asdvert.component';
   imports: [
     CommonModule,
     BrowserModule,
-    ReactiveFormsModule,
     FormsModule,
+    ReactiveFormsModule,
     LayoutRoutingModule,
     ElModule.forRoot()
   ],

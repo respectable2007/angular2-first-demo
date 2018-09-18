@@ -14,8 +14,8 @@ export class AsideComponent implements OnInit {
   	          private local:LocalStorageService) { }
 
   ngOnInit() {
-	this.menu = this.local.get('menu');
-	console.log(this.menu)
+	  this.menu = this.local.get('menu');
+	  // console.log(this.menu)
   }
 
 }

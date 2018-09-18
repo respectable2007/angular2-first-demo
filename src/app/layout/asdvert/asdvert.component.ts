@@ -30,6 +30,28 @@ export class AsdvertComponent implements OnInit {
 
   }
 
+  // 日期控件清空事件
+  handleClearDataStart(e:any) {
+    this.searchFrm.setValue( Object.assign(this.searchFrm.value,{
+      pubStartDate: ''
+    }))
+  } 
+  handleClearDataEnd(e:any) {
+    this.searchFrm.setValue( Object.assign(this.searchFrm.value,{
+      pubEndDate: ''
+    }))
+  }
+  handleClearDataColStart(e:any) {
+    this.searchFrm.setValue( Object.assign(this.searchFrm.value,{
+      dataCollectStartDate: ''
+    }))
+  }
+  handleClearDataColEnd(e:any) {
+    this.searchFrm.setValue( Object.assign(this.searchFrm.value,{
+      dataCollectEndDate: ''
+    }))
+  }
+
   messageCtrl(item: string):string {
   	if(!this.searchFrm.controls[item]) return
   	const control:AbstractControl = this.searchFrm.controls[item];
@@ -50,21 +72,14 @@ export class AsdvertComponent implements OnInit {
 
   private pubStartDateValidator = (control:FormGroup): res => {
     if (control.value && this.searchFrm.controls['pubEndDate'].value) {
-    	// let start = new Date(control.value.replace(/-/g, '/'))
-    	// let end = new Date(this.searchFrm.controls['pubEndDate'].value.replace(/-/g, '/'))
-    	console.log(Date.parse(control.value.replace(/-/g, '/')))
     	if (Date.parse(control.value.replace(/-/g, '/')) > Date.parse(this.searchFrm.controls['pubEndDate'].value.replace(/-/g, '/'))) {
           return { message: '结束时间应大于起始时间'}
-
     	}
     }
   }
 
   private pubEndDateValidator = (control:FormGroup): res => {
     if (control.value && this.searchFrm.controls['pubStartDate'].value) {
-    	// let start = new Date(control.value.replace(/-/g, '/'))
-    	// let end = new Date(this.searchFrm.controls['pubEndDate'].value.replace(/-/g, '/'))
-    	console.log(Date.parse(control.value.replace(/-/g, '/')))
     	if (Date.parse(control.value.replace(/-/g, '/')) < Date.parse(this.searchFrm.controls['pubStartDate'].value.replace(/-/g, '/'))) {
           return { message: '结束时间应大于起始时间'}
     	}
@@ -72,22 +87,17 @@ export class AsdvertComponent implements OnInit {
   }
 
   private dataCollectStartDateValidator = (control:FormGroup): res => {
+    console.log(control.value)
     if (control.value && this.searchFrm.controls['dataCollectEndDate'].value) {
-    	// let start = new Date(control.value.replace(/-/g, '/'))
-    	// let end = new Date(this.searchFrm.controls['pubEndDate'].value.replace(/-/g, '/'))
-    	console.log(Date.parse(control.value.replace(/-/g, '/')))
+    console.log(this.searchFrm.controls['dataCollectEndDate'].value)
     	if (Date.parse(control.value.replace(/-/g, '/')) > Date.parse(this.searchFrm.controls['dataCollectEndDate'].value.replace(/-/g, '/'))) {
           return { message: '结束时间应大于起始时间'}
-
     	}
     }
   }
 
    private dataCollectEndDateValidator = (control:FormGroup): res => {
     if (control.value && this.searchFrm.controls['dataCollectStartDate'].value) {
-    	// let start = new Date(control.value.replace(/-/g, '/'))
-    	// let end = new Date(this.searchFrm.controls['pubEndDate'].value.replace(/-/g, '/'))
-    	console.log(Date.parse(control.value.replace(/-/g, '/')))
     	if (Date.parse(control.value.replace(/-/g, '/')) < Date.parse(this.searchFrm.controls['dataCollectStartDate'].value.replace(/-/g, '/'))) {
           return { message: '结束时间应大于起始时间'}
     	}

@@ -1,68 +1,66 @@
-<div>
-  <el-form label-width='160px' [fromGroup]="searchFrm" [show-message]='true'>
-  	<!-- <div el-row>
-  		<div el-col span='9'>
-  		  <el-form-item label='企业名称' [error]='messageCtrl("comName")'>
-    	    <el-input fromControlName='comName' placeholder='请输入企业名称'></el-input>
-          </el-form-item>
-  		</div>
-  		<div el-col span='9'>
-  			<el-form-item label='关键词' label-width='160px' [error]='messageCtrl("keyword")'>
-    	    <el-input fromControlName='keyword' placeholder='请输入关键词'></el-input>
-          </el-form-item>
-  		</div>
-  	</div>
-    <div el-row>
-  		<div el-col span='9'>
-  		  <el-form-item label='企业名称'>
-    	    <el-select placeholder='请选择平台/网站'>
-    	      <el-option *ngFor='let item plateList'
-    	                 [label]='item.platName'
-    	                 [value]='item.platName'></el-option>
-    	    </el-select>
-          </el-form-item>
-  		</div>
-  		<div el-col span='9'>
-  		  <el-form-item label='发布时间' label-width='160px'>
-  		  	<div el-row>
-  		  		<div el-col span='11'>
-  		  			<el-form-item  label-width='0px' [error]='messageCtrl("pubStartDate")'>
-    	              <el-date-picker fromControlName='pubStartDate' placeholder='起始时间'></el-date-picker>
-  		  			</el-form-item>
-  		  		</div>
-  		  		<div el-col span='2'>至</div>
-  		  		<div el-col span='11'>
-  		  			<el-form-item  label-width='0px' [error]='messageCtrl("pubEndDate")'>
-    	              <el-date-picker fromControlName='pubEndDate' placeholder='结束时间'></el-date-picker>
-  		  			</el-form-item>
-  		  		</div>
-  		  	</div>
-          </el-form-item>
-  		</div>
-  	</div>
-    <div el-row>
-  		<div el-col span='9'>
-  		  <el-form-item label='数据采集时间'>
-  		  	<div el-row>
-  		  		<div el-col span='11'>
-  		  			<el-form-item  label-width='0px' [error]='messageCtrl("dataCollectStartDate")'>
-    	              <el-date-picker fromControlName='dataCollectStartDate' placeholder='起始时间'></el-date-picker>
-  		  			</el-form-item>
-  		  		</div>
-  		  		<div el-col span='2'>至</div>
-  		  		<div el-col span='11'>
-  		  			<el-form-item  label-width='0px' [error]='messageCtrl("dataCollectEndDate")'>
-    	              <el-date-picker fromControlName='dataCollectEndDate' placeholder='结束时间'></el-date-picker>
-  		  			</el-form-item>
-  		  		</div>
-  		  	</div>
-          </el-form-item>
-  		</div>
-  	</div>
-  	<div el-row>
-  	  <el-form-item label-width='0px'>
-  	  	<el-button type='primary' (click)='handleSearch'>查询</el-button>
-  	  </el-form-item>
-  	</div> -->
-  </el-form>
-</div>
+<el-form [formGroup]="searchFrm" label-width="150px" [show-message]="true" >
+  <div el-row>
+    <div el-col span='9'>
+      <el-form-item label='企业名称' [error]='messageCtrl("comName")'>
+        <el-input formControlName='comName' placeholder='请输入企业名称'></el-input>
+        </el-form-item>
+    </div>
+    <div el-col span='9'>
+      <el-form-item label='关键词' label-width='160px' [error]='messageCtrl("keyword")'>
+        <el-input formControlName='keyword' placeholder='请输入关键词'></el-input>
+        </el-form-item>
+    </div>
+  </div>
+  <div el-row>
+    <div el-col span='9'>
+      <el-form-item label='企业名称'>
+        <el-select placeholder='请选择平台/网站' style='width:100%'>
+          <el-option *ngFor='let item plateList'
+                     [label]='item.platName'
+                     [value]='item.platName'></el-option>
+        </el-select>
+        </el-form-item>
+    </div>
+    <div el-col span='9'>
+      <el-form-item label='发布时间' label-width='160px'>
+        <div el-row>
+          <div el-col span='11'>
+            <el-form-item  label-width='0px' [error]='messageCtrl("pubStartDate")'>
+                  <el-date-picker formControlName='pubStartDate' placeholder='起始时间' (clear-click)='handleClearDataStart($event)'></el-date-picker>
+            </el-form-item>
+          </div>
+          <div el-col span='2'>至</div>
+          <div el-col span='11'>
+            <el-form-item  label-width='0px' [error]='messageCtrl("pubEndDate")'>
+                  <el-date-picker formControlName='pubEndDate' placeholder='结束时间' (clear-click)='handleClearDataEnd($event)'></el-date-picker>
+            </el-form-item>
+          </div>
+        </div>
+        </el-form-item>
+    </div>
+  </div>
+  <div el-row>
+    <div el-col span='9'>
+      <el-form-item label='数据采集时间'>
+        <div el-row>
+          <div el-col span='11'>
+            <el-form-item  label-width='0px' [error]='messageCtrl("dataCollectStartDate")'>
+                  <el-date-picker formControlName='dataCollectStartDate' placeholder='起始时间' (clear-click)='handleClearDataColStart($event)'></el-date-picker>
+            </el-form-item>
+          </div>
+          <div el-col span='2'>至</div>
+          <div el-col span='11'>
+            <el-form-item  label-width='0px' [error]='messageCtrl("dataCollectEndDate")'>
+                  <el-date-picker formControlName='dataCollectEndDate' placeholder='结束时间' (clear-click)='handleClearDataColEnd($event)'></el-date-picker>
+            </el-form-item>
+          </div>
+        </div>
+        </el-form-item>
+    </div>
+  </div>
+  <div el-row>
+    <el-form-item label-width='150px'>
+      <el-button type='success' (click)='handleSearch'>查询</el-button>
+    </el-form-item>
+  </div>
+</el-form>

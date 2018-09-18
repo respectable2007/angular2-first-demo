@@ -40,8 +40,8 @@ import { AsideComponent } from './layout/aside/aside.component';
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule,
     FormsModule,
+    ReactiveFormsModule,
     LayoutModule,
     AppRoutingModule,
     HttpClientModule,
