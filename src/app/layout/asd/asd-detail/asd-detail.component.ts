@@ -10,13 +10,30 @@ import { LoginService } from '../../../service/login.service';
 export class AsdDetailComponent implements OnInit {
 
   id: string;
-  asd: any;
+  asd: any = {
+  	comName: '',
+  	comAddr: '',
+  	comTele: '',
+  	businessScope: '',
+  	productName: '',
+  	productBrandName: '',
+  	productCatgName: '',
+  	productContent: '',
+  	illegalDesc: '',
+  	illegalWord: '',
+  	lawsRuleDesc: '',
+  	platName: '',
+  	shopName: '',
+  	productPubDate: '',
+  	productURL: ''
+  };
   constructor(private router: Router,
   	          private route: ActivatedRoute,
   	          private service: LoginService) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id')
+    this.getAsdDetail()
   }
 
   getAsdDetail() {

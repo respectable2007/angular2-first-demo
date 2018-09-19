@@ -1,3 +1,69 @@
-<p>
-  asd-detail works!
-</p>
+<el-button type='success' (click)='handleBack'>返回</el-button>
+<el-button type='success' (click)='handlePrint'>打印</el-button>
+<div class="container print">
+	<el-form label-width='160px'>
+		<div>
+		  <h3>企业信息</h3>
+		  <el-form-item label='企业名称：'>
+		  	<span>{{asd.comName}}</span>
+		  </el-form-item>
+		  <el-form-item label='地址：'>
+		  	<span>{{asd.comAddr}}</span>
+		  </el-form-item>
+		  <el-form-item label='联系电话：'>
+		  	<span>{{asd.comTele}}</span>
+		  </el-form-item>
+		  <el-form-item label='经营范围：'>
+		  	<span>{{asd.businessScope}}</span>
+		  </el-form-item>
+		</div>
+		<div>
+		  <h3>商品信息</h3>
+		  <el-form-item label='商品名称：'>
+		  	<span>{{asd.productName}}</span>
+		  </el-form-item>
+		  <el-form-item label='品牌：'>
+		  	<span>{{asd.productBrandName}}</span>
+		  </el-form-item>
+		  <el-form-item label='品类：'>
+		  	<span>{{asd.productCatgName}}</span>
+		  </el-form-item>
+		</div>
+		<div>
+		  <h3>违禁词所在的上下文内容</h3>
+		  <el-form-item label=''>
+		  	<span>{{asd.productContent}}</span>
+		  </el-form-item>
+		</div>
+		<div>
+		  <h3>涉嫌违法行为</h3>
+		  <el-form-item label=''>
+		  	<span>{{asd.illegalDesc}}</span>
+		  </el-form-item>
+		</div>
+		<div>
+		  <h3>具体内容</h3>
+		  <el-form-item label='违禁词：'>
+		  	<span>{{asd.illegalWord}}</span>
+		  </el-form-item>
+		  <el-form-item label='对应法规：'>
+		  	<span>{{asd.lawsRuleDesc}}</span>
+		  </el-form-item>
+		</div>
+		<div>
+		  <h3>发布信息</h3>
+		  <el-form-item label='发布平台名称：'>
+		  	<span>{{asd.platName}}</span>
+		  </el-form-item>
+		  <el-form-item label='发布店铺名称：'>
+		  	<span>{{asd.shopName}}</span>
+		  </el-form-item>
+		  <el-form-item label='发布时间：'>
+		  	<span>{{asd.productPubDate}}</span>
+		  </el-form-item>
+		  <el-form-item label='URL：'>
+		  	<a [href]='asd.productURL' target="blank">{{asd.productURL}}</a>
+		  </el-form-item>
+		</div>
+	</el-form>
+</div>
