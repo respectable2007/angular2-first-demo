@@ -4,9 +4,10 @@ import { AuthService } from '../service/auth.service';
 
 import { LayoutComponent }    from './layout.component';
 import { PasswordComponent }    from './password/password.component';
-import { AuthoritionComponent }    from './authorition/authorition.component';
-import { AuthAddComponent } from './auth-add/auth-add.component';
-import { AsdvertComponent } from './asdvert/asdvert.component'
+import { AuthoritionComponent }    from './auth/authorition/authorition.component';
+import { AuthAddComponent } from './auth/auth-add/auth-add.component';
+import { AsdvertComponent } from './asd/asdvert/asdvert.component'
+import { AsdDetailComponent } from './asd/asd-detail/asd-detail.component';
 
 const layoutRoutes: Routes = [{
   path: 'layout',
@@ -15,7 +16,8 @@ const layoutRoutes: Routes = [{
   children:[{ path: 'password',  component: PasswordComponent },
   { path: 'authorition',  component: AuthoritionComponent},
   { path: 'authorition/editinfo/:id',  component: AuthAddComponent},
-  { path: 'advertmonitor',  component: AsdvertComponent}]
+  { path: 'advertmonitor',  component: AsdvertComponent},
+  { path: 'advertmonitor/detail/:id',  component: AsdDetailComponent}]
 }];
  
 @NgModule({

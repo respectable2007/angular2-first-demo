@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, forwardRef } from '@angular/core';
 import { FormGroup, AbstractControl, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { LoginService } from '../../service/login.service';
-
+import { LoginService } from '../../../service/login.service';
+import { Router } from '@angular/router';
 class res {
   message:string;
 }
@@ -15,10 +15,15 @@ export class AsdvertComponent implements OnInit {
   searchFrm: FormGroup;
   platList:any[] = [];
   asdList:any[] = [];
-
+  page:any = {
+    recordTotal: 0,
+    pageSize: 10,
+    pageNum: 1
+  }
   constructor(
   	@Inject(forwardRef(() => FormBuilder)) private formBuilder: FormBuilder,
-    private service: LoginService) { }
+    private service: LoginService,
+    private router: Router) { }
 
   ngOnInit() {
   	this.searchFrm = this.formBuilder.group({
@@ -33,20 +38,38 @@ export class AsdvertComponent implements OnInit {
     this.getPlatList()
   }
 
+  handleDetail(scope:any) {
+    let path = 'layout/advertmonitor/detail/' + scope.rowData.id
+    this.router.navigate([path])
+  }
+  
+  // 获取广告列表
   handleSearch() {
     if (this.searchFrm.valid) {
-      this.service.getAsdvertList(Object.assign(this.searchFrm.value, {
-        pageNum: 1,
-        pageSize: 10,
-        exportType: 1
-      })).subscribe(result => {
-        if (result.code === 200) {
-          this.asdList = result.data.list
-        }
-      })
+      this.getAsdvertList()
     }
   }
 
+  getAsdvertList() {
+    this.service.getAsdvertList(Object.assign(this.searchFrm.value, {
+        pageNum: this.page.pageNum,
+        pageSize: 10,
+        exportType: '1'
+      })).subscribe(result => {
+        if (result.code === 200) {
+          this.asdList = result.data.list
+          this.page.recordTotal = result.data.recordTotal
+          this.page.pageNum = result.data.pageNum
+        }
+      })
+  }
+
+  // 页码变化事件
+  handlePageNum(e:any) {
+    if (e === this.page.pageNum) return
+    this.page.pageNum = e
+    this.getAsdvertList()
+  }
   // 日期控件清空事件
   handleClearDataStart(e:any) {
     this.searchFrm.setValue( Object.assign(this.searchFrm.value,{

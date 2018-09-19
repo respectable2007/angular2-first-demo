@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, ViewChild, forwardRef, Inject, Vi
 import { UserSafeHooks } from 'element-angular/release/tree/tree';
 
 import { FormBuilder, Validators, FormGroup, FormControl, AbstractControl} from '@angular/forms';
-import { LoginService } from '../../service/login.service';
+import { LoginService } from '../../../service/login.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 class res {

@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-// import { InMemoryDataService } from './in-memory-data.service';
 
 import { AppComponent } from './app.component';
 

@@ -64,6 +64,7 @@
     </el-form-item>
   </div>
 </el-form>
+<el-button type='success'>导出</el-button>
 <el-table [model]='asdList' center='all'>
   <el-table-column label='企业名称' model-key='comName'></el-table-column>
   <el-table-column label='店铺名称' model-key='shopName'></el-table-column>
@@ -71,7 +72,7 @@
   <el-table-column label='平台名称' model-key='platName'></el-table-column>
   <el-table-column label='URL'>
     <ng-template #slot let-scope='scope'>
-      <a href="" target="blank">{{scope.rowData.productURL}}</a>
+      <a [href]="scope.rowData.productURL" target="blank">{{scope.rowData.productURL}}</a>
     </ng-template>
   </el-table-column>
   <el-table-column label='涉及违禁词' model-key='illegalWord'></el-table-column>
@@ -82,7 +83,9 @@
   <el-table-column label='数据采集时间' model-key='dataCollectDate'></el-table-column>
   <el-table-column label='操作'>
     <ng-template #slot let-scope='scope'>
-      <el-button type='text' size='small' (click)='handleDetail(scope)'>操作</el-button>
+      <el-button type='text' size='small' (click)='handleDetail(scope)'>详情</el-button>
     </ng-template>
   </el-table-column>
 </el-table>
+<el-pagination [total]='page.recordTotal' [page-sizes]='[10,20,30,40]' 
+  [layout]="['prev', 'pager', 'next', 'size', 'total']" (modelChange)='handlePageNum($event)'></el-pagination>

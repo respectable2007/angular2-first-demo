@@ -8,9 +8,10 @@ import { LayoutService }    from './layout.service';
 import { LayoutRoutingModule }    from './layout-routing.module';
 
 import { PasswordComponent }    from './password/password.component';
-import { AuthoritionComponent }    from './authorition/authorition.component';
-import { AuthAddComponent } from './auth-add/auth-add.component';
-import { AsdvertComponent } from './asdvert/asdvert.component';
+import { AuthoritionComponent }    from './auth/authorition/authorition.component';
+import { AuthAddComponent } from './auth/auth-add/auth-add.component';
+import { AsdvertComponent } from './asd/asdvert/asdvert.component';
+import { AsdDetailComponent } from './asd/asd-detail/asd-detail.component';
 
  
 @NgModule({
@@ -26,7 +27,8 @@ import { AsdvertComponent } from './asdvert/asdvert.component';
     PasswordComponent,
     AuthoritionComponent,
     AuthAddComponent,
-    AsdvertComponent
+    AsdvertComponent,
+    AsdDetailComponent
   ],
   providers: [ LayoutService ]
 })

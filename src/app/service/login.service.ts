@@ -35,6 +35,16 @@ const API = {
 @Injectable()
 export class LoginService {
   constructor(private http: HttpClient) { }
+
+  handleObject(data:any):any {
+    for(let i in data) {
+     if (!data[i]) {
+       delete data[i]
+     } 
+    }
+    return data
+  }
+
   login(user: any): Observable<any> {
   	let data:string ='username=' + user.name + '&password=' + user.password
   	return this.http.post(API.POST_LOGIN, data, httpOptions)
@@ -69,11 +79,15 @@ export class LoginService {
 
   // 广告监测
   getAsdvertList(data:any): Observable<any> {
-    httpJson.params = data
+    httpJson.params = this.handleObject(data)
     return this.http.get(API.GET_ADVERT_LIST, httpJson)
   }
   getPlatList(): Observable<any> {
     httpJson.params = {}
     return this.http.get(API.GET_PLAT_LIST, httpJson)
+  }
+  getAsdDetail(data:any): Observable<any> {
+    httpJson.params = data
+    return this.http.get(API.GET_ADVERT_DETAIL, httpJson)
   }
 }
