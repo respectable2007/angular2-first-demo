@@ -2,6 +2,7 @@ import { Component, OnInit, Inject, forwardRef } from '@angular/core';
 import { FormGroup, AbstractControl, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { LoginService } from '../../../service/login.service';
 import { Router } from '@angular/router';
+import { ElMessageService } from 'element-angular/release/element-angular.module';
 class res {
   message:string;
 }
@@ -23,7 +24,8 @@ export class AsdvertComponent implements OnInit {
   constructor(
   	@Inject(forwardRef(() => FormBuilder)) private formBuilder: FormBuilder,
     private service: LoginService,
-    private router: Router) { }
+    private router: Router,
+    @Inject(forwardRef(() => ElMessageService)) private message: any) { }
 
   ngOnInit() {
   	this.searchFrm = this.formBuilder.group({
@@ -43,13 +45,13 @@ export class AsdvertComponent implements OnInit {
     this.router.navigate([path])
   }
   
-  // 获取广告列表
+  // 查询
   handleSearch() {
     if (this.searchFrm.valid) {
       this.getAsdvertList()
     }
   }
-
+  // 获取广告列表
   getAsdvertList() {
     this.service.getAsdvertList(Object.assign(this.searchFrm.value, {
         pageNum: this.page.pageNum,
@@ -63,12 +65,23 @@ export class AsdvertComponent implements OnInit {
         }
       })
   }
-
   // 页码变化事件
   handlePageNum(e:any) {
     if (e === this.page.pageNum) return
     this.page.pageNum = e
     this.getAsdvertList()
+  }
+  // 导出
+  handleExport() {
+    this.service.asdExport(Object.assign(this.searchFrm.value, {
+        pageNum: this.page.pageNum,
+        pageSize: 10,
+        exportType: '1'
+      })).subscribe(result => {
+        if (result.code === 200) {
+          this.message.success('请到导出模块导出文件！')
+        }
+      })
   }
   // 日期控件清空事件
   handleClearDataStart(e:any) {

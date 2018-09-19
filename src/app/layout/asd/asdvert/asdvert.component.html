@@ -59,12 +59,12 @@
     </div>
   </div>
   <div el-row>
-    <el-form-item label-width='150px'>
-      <el-button type='success' (click)='handleSearch()'>查询</el-button>
-    </el-form-item>
+      <el-form-item label-width='150px'>
+        <el-button type='success' size='large' (click)='handleSearch()'>查询</el-button>
+      </el-form-item>
   </div>
 </el-form>
-<el-button type='success'>导出</el-button>
+<el-button type='success' (click)='handleExport()'>导出</el-button>
 <el-table [model]='asdList' center='all'>
   <el-table-column label='企业名称' model-key='comName'></el-table-column>
   <el-table-column label='店铺名称' model-key='shopName'></el-table-column>

@@ -44,5 +44,12 @@ export class AsdDetailComponent implements OnInit {
   	               }
   	            })
   }
-
+  // 返回
+  handleBack() {
+  	this.router.navigate(['/layout/advertmonitor'])
+  }
+  // 打印
+  handlePrint() {
+  	console.log(1111)
+  }
 }

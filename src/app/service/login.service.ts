@@ -57,6 +57,12 @@ export class LoginService {
     return this.http.post(API.UPDATE_USER_PASSWORD, data, httpJson)
   }
 
+  // 平台列表
+  getPlatList(): Observable<any> {
+    httpJson.params = {}
+    return this.http.get(API.GET_PLAT_LIST, httpJson)
+  }
+
   // 权限管理
   getRoleList(data:any): Observable<any> {
     httpJson.params = data
@@ -82,12 +88,17 @@ export class LoginService {
     httpJson.params = this.handleObject(data)
     return this.http.get(API.GET_ADVERT_LIST, httpJson)
   }
-  getPlatList(): Observable<any> {
-    httpJson.params = {}
-    return this.http.get(API.GET_PLAT_LIST, httpJson)
-  }
   getAsdDetail(data:any): Observable<any> {
     httpJson.params = data
     return this.http.get(API.GET_ADVERT_DETAIL, httpJson)
+  }
+  asdExport(data:any): Observable<any> {
+    // return this.http.get(API.EXPORT_ADVERT, {
+    //   headers: new HttpHeaders({ 'Content-Type': 'application/json;charset=utf-8' }),
+    //   params: data,
+    //   responseType: 'blob'
+    // })
+    httpJson.params = data
+    return this.http.get(API.EXPORT_ADVERT, httpJson)
   }
 }
