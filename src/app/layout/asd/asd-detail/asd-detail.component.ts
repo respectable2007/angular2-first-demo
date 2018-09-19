@@ -50,6 +50,13 @@ export class AsdDetailComponent implements OnInit {
   }
   // 打印
   handlePrint() {
-  	console.log(1111)
+    let printer = document.getElementsByClassName('print')[0]
+    let oldhtml = document.getElementsByTagName('app-root')[0]
+    window.document.body.innerHTML = ""
+    window.document.body.appendChild(printer)
+    window.print()
+    window.document.body.innerHTML = ""
+    window.document.body.appendChild(oldhtml)
+    window.document.body.getElementsByTagName('app-asd-detail')[0].appendChild(printer)
   }
 }
