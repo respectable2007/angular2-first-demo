@@ -39,7 +39,16 @@
   	 	           [value]='item.kwNameId'></el-option>
   	 </el-select>
   </el-form-item>
-  <el-form-item label='附件'></el-form-item>
+  <el-form-item label='附件'>
+  	<el-upload [action]='upload' [upload-filter]='beforeUpload.bind(this)'>
+  	  <ng-template #trigger>
+  	  	<el-button size='small' type='success'>上传</el-button>
+  	  </ng-template>
+  	  <ng-template #tip>
+  	  	<div>单个文件最大50MB，最多5个文件</div>
+  	  </ng-template>
+  	</el-upload>
+  </el-form-item>
   <el-form-item label='数据文件'></el-form-item>
 </el-form>
 <el-button type='success' (click)='handleSubmit()'>提交</el-button>

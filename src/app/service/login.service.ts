@@ -122,4 +122,7 @@ export class LoginService {
   getKeywordList(): Observable<any> {
     return this.http.get(API.GET_KWGROUP_NAME, httpJson)
   }
+  updateTask(data:any): Observable<any> {
+    return this.http.post(API.SPECIAL_UPDATE, data, httpJson)
+  }
 }

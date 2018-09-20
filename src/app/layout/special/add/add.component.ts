@@ -2,6 +2,8 @@ import { Component, OnInit, forwardRef, Inject } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, FormControl, AbstractControl} from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../../../service/login.service';
+import { ElMessageService } from 'element-angular/release/element-angular.module';
+const upload = 'dmss/specialMonitorCfg/upload' // 上传文件
 class res{
   message:string	
 }
@@ -16,10 +18,12 @@ export class AddComponent implements OnInit {
   plateList:any[] = [];
   groupList:any[] = [];
   keywordList:any[] = [];
-
+  
+  upload = upload;
   constructor(private service: LoginService,
   	          private router: Router,
-  	          @Inject(forwardRef(() => FormBuilder)) private formBuilder: FormBuilder) { }
+  	          @Inject(forwardRef(() => FormBuilder)) private formBuilder: FormBuilder,
+  	          @Inject(forwardRef(() => ElMessageService)) private message: ElMessageService) { }
 
   ngOnInit() {
   	this.taskFrm = this.formBuilder.group({
@@ -36,7 +40,7 @@ export class AddComponent implements OnInit {
   }
 
   handleBack() {
-
+    this.router.navigate(['layout/special/list'])
   }
   
   getPlatList() {
@@ -66,7 +70,25 @@ export class AddComponent implements OnInit {
   	            })
   }
   handleSubmit() {
-
+    if (this.taskFrm.valid) {
+      this.service.updateTask(Object.assign(this.taskFrm.value,{
+      	platCd: this.taskFrm.value.platCd.join(','),
+      	kwNameId: this.taskFrm.value.kwNameId.join(','),
+      	attachFileIds: ''
+      })).subscribe(result => {
+      	if (result.code === 200) {
+      	  this.router.navigate(['layout/special/list'])
+      	}
+      })
+    }
+  }
+  beforeUpload(file: File): boolean {
+  	let is50:boolean = true
+  	if(file.size/1024/1024 > 50) {
+  	  is50 = false
+  	  this.message.error('上传文件大小不能超过50MB!')
+  	}
+  	return is50
   }
   // 验证
   messageCtrl(item: string):string {
