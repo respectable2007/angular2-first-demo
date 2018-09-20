@@ -19,21 +19,21 @@
   	</div>
   </el-form-item>
   <el-form-item label='监测企业组' [required]='true'>
-  	 <el-select placeholder='请选择企业组' [model]='comGroupId' [clearable]='true' formGroupName='comGroupId'>
+  	 <el-select placeholder='请选择企业组' [clearable]='true' formGroupName='comGroupId'>
   	 	<el-option *ngFor='let item of groupList'
   	 	           [label]='item.groupName'
   	 	           [value]='item.id'></el-option>
   	 </el-select>
   </el-form-item>
   <el-form-item label='监测平台' [required]='true'>
-  	<el-select placeholder='请选择监测平台' [model]='platCd' [multiple]='true'  formGroupName='platCd'>
+  	<el-select placeholder='请选择监测平台' [multiple]='true'  formGroupName='platCd'>
   	 	<el-option *ngFor='let item of plateList'
   	 	           [label]='item.platName'
   	 	           [value]='item.platCd'></el-option>
   	 </el-select>
   </el-form-item>
   <el-form-item label='关键词名称' [required]='true'>
-  	<el-select placeholder='请选择关键词名称' [model]='kwNameId' [multiple]='true' formGroupName='kwNameId'>
+  	<el-select placeholder='请选择关键词名称' [multiple]='true' formGroupName='kwNameId'>
   	 	<el-option *ngFor='let item of keywordList'
   	 	           [label]='item.kwName'
   	 	           [value]='item.kwNameId'></el-option>

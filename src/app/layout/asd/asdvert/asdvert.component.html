@@ -1,7 +1,7 @@
 <el-form [formGroup]="searchFrm" label-width="150px" [show-message]="true" >
   <div el-row>
     <div el-col span='9'>
-      <el-form-item label='企业名称' [error]='messageCtrl("comName")'>
+      <el-form-item label='企业名称' [error]='messageCtrl("comName")' [required]='true'>
         <el-input formControlName='comName' placeholder='请输入企业名称'></el-input>
         </el-form-item>
     </div>
