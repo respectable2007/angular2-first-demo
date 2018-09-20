@@ -12,6 +12,8 @@ import { AuthoritionComponent }    from './auth/authorition/authorition.componen
 import { AuthAddComponent } from './auth/auth-add/auth-add.component';
 import { AsdvertComponent } from './asd/asdvert/asdvert.component';
 import { AsdDetailComponent } from './asd/asd-detail/asd-detail.component';
+import { ListComponent } from './special/list/list.component';
+import { AddComponent } from './special/add/add.component';
 
  
 @NgModule({
@@ -28,7 +30,9 @@ import { AsdDetailComponent } from './asd/asd-detail/asd-detail.component';
     AuthoritionComponent,
     AuthAddComponent,
     AsdvertComponent,
-    AsdDetailComponent
+    AsdDetailComponent,
+    ListComponent,
+    AddComponent
   ],
   providers: [ LayoutService ]
 })

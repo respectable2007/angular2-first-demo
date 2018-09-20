@@ -1,0 +1,27 @@
+<el-button type='success' (click)='handleAdd()'>新增</el-button>
+<el-table [model]='specialList' center='all'>
+	<el-table-column label='任务ID' model-key='id'></el-table-column>
+	<el-table-column label='任务名称' model-key='taskName'></el-table-column>
+	<el-table-column label='数据采集起止时间'>
+	  <ng-template #slot let-scope='scope'>
+	    <span *ngIf='scope.rowData.dataCollectStartDate && scope.rowData.dataCollectEndDate'>
+	      {{scope.rowData.dataCollectStartDate}}-{{scope.rowData.dataCollectEndDate}}
+	    </span>
+	    <span *ngIf='scope.rowData.dataCollectStartDate && !scope.rowData.dataCollectEndDate'>
+	      {{scope.rowData.dataCollectStartDate}}
+	    </span>
+	    <span *ngIf='!scope.rowData.dataCollectStartDate && scope.rowData.dataCollectEndDate'>
+	      {{scope.rowData.dataCollectEndDate}}
+	    </span>
+	    <span *ngIf='!scope.rowData.dataCollectStartDate && !scope.rowData.dataCollectEndDate'>
+	    	---
+	    </span>
+	  </ng-template>
+	</el-table-column>
+	<el-table-column label='监测企业组' model-key='comGroupName'></el-table-column>
+	<el-table-column label='监测平台' model-key='platName'></el-table-column>
+	<el-table-column label='关键词名称' model-key='kwName'></el-table-column>
+	<el-table-column label='任务创建人' model-key='creatorName'></el-table-column>
+	<el-table-column label='任务创建时间' model-key='createTime'></el-table-column>
+</el-table>
+<el-pagination [total]='page.recordTotal' [page-sizes]='[10,20,30,40]' [layout]="['prev','pager','next','total']" (modelChange)='handlePageNum($event)'></el-pagination>

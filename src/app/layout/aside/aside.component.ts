@@ -15,7 +15,6 @@ export class AsideComponent implements OnInit {
 
   ngOnInit() {
 	  this.menu = this.local.get('menu');
-	  // console.log(this.menu)
   }
 
 }

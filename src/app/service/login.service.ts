@@ -30,7 +30,19 @@ const API = {
   GET_ADVERT_DETAIL: '/dmss/advMonitor/advDtl', // 获取广告详情
   GET_ADVERT_SETTLE_LIST: '/dmss/advMonitor/pageSettledList', // 企业广告处理历史列表
   POST_ADVERT_SETTLE: '/dmss/advMonitor/settle', // 处理广告
-  EXPORT_ADVERT: '/dmss/advMonitor/export'// 广告导出
+  EXPORT_ADVERT: '/dmss/advMonitor/export', // 广告导出
+
+  // 专项监测
+  SPECIAL_DETAIL: '/dmss/specialMonitorCfg/detail', // 专项监测配置-任务详情
+  SPECIAL_INSERT: '/dmss/specialMonitorCfg/insert', // 专项监测配置-新增任务
+  SPECIAL_PAGE_SELECT_ADV: '/dmss/specialMonitorCfg/pageSelectAdv', // 专项监测结果-分页查询广告监测结果
+  SPECIAL_PAGE_SELECT_CFG: '/dmss/specialMonitorCfg/pageSelectCfg', // 专项监测配置-分页查询任务列表
+  SPECIAL_UPDATE: '/dmss/specialMonitorCfg/update', // 专项监测配置-修改任务
+  DEL_TASK_FILE: '/dmss/specialMonitorCfg/delMonitorTaskFile', // 专项监测配置-删除任务文件数据
+  HAS_DATA_FILE: '/dmss/specialMonitorCfg/hasDataFile', // 专项监测配置-查看任务配置是否有数据文件，0：无，1：有
+  SPECIAL_RLTS_EXPORT: '/dmss/specialMonitorCfg/export', // 专项监测结果-广告监测结果导出
+  DOWN_MONITOR_TASK_FILE: '/dmss/specialMonitorCfg/downloadMonitorTaskFile', // 专项监测配置-下载任务文件数据
+  SPECIAL_UPLOAD: '/dmss/specialMonitorCfg/upload' // 上传文件监测任务附件或数据文件
 }
 @Injectable()
 export class LoginService {
@@ -93,12 +105,13 @@ export class LoginService {
     return this.http.get(API.GET_ADVERT_DETAIL, httpJson)
   }
   asdExport(data:any): Observable<any> {
-    // return this.http.get(API.EXPORT_ADVERT, {
-    //   headers: new HttpHeaders({ 'Content-Type': 'application/json;charset=utf-8' }),
-    //   params: data,
-    //   responseType: 'blob'
-    // })
     httpJson.params = data
     return this.http.get(API.EXPORT_ADVERT, httpJson)
+  }
+
+  // 专项监测
+  getTaskList(data:any): Observable<any> {
+    httpJson.params = {}
+    return this.http.post(API.SPECIAL_PAGE_SELECT_CFG, data, httpJson)
   }
 }

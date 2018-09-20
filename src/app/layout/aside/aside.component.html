@@ -6,7 +6,7 @@
             <i class="el-icon-message"></i>{{item.menuName}}
           </ng-template>
           <el-menu-item-group title=''>
-            <el-menu-item [index]='subItem.id' *ngFor='let subItem of item.subMenuList' [to]='"/layout/" + subItem.menuUrl'>
+            <el-menu-item [index]='subItem.id' *ngFor='let subItem of item.subMenuList' [to]='"/layout" + item.menuUrl + "/" + subItem.menuUrl'>
               {{subItem.menuName}}
             </el-menu-item>
           </el-menu-item-group>
