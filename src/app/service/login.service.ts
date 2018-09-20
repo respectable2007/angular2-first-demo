@@ -17,6 +17,8 @@ const API = {
   UPDATE_USER_PASSWORD: '/dmss/user/password/update', // 修改密码
   
   GET_PLAT_LIST: '/dmss/resource/getPlatList', //获取平台列表
+  GROUP_LIST: '/dmss/company/allGroup', // 企业管理-企业组全部列表
+  GET_KWGROUP_NAME: '/dmss/specialMonitorCfg/kwGroupName', // 专项监测配置-关键词组列表
 
   // 权限管理
   GET_ROLE_LIST: '/dmss/role/list', // 角色列表// 活动列表
@@ -113,5 +115,11 @@ export class LoginService {
   getTaskList(data:any): Observable<any> {
     httpJson.params = {}
     return this.http.post(API.SPECIAL_PAGE_SELECT_CFG, data, httpJson)
+  }
+  getAllGroup(): Observable<any> {
+    return this.http.get(API.GROUP_LIST, httpJson)
+  }
+  getKeywordList(): Observable<any> {
+    return this.http.get(API.GET_KWGROUP_NAME, httpJson)
   }
 }
