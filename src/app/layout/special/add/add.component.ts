@@ -38,11 +38,11 @@ export class AddComponent implements OnInit {
       kwNameId: [[], this.kwNameIdValidator]
     })
   }
-
+  // 返回
   handleBack() {
     this.router.navigate(['layout/special/list'])
   }
-  
+  // 平台列表
   getPlatList() {
   	this.service.getPlatList()
   	            .subscribe(result => {
@@ -51,7 +51,7 @@ export class AddComponent implements OnInit {
   	              }
   	            })
   }
-  
+  // 企业组列表
   getAllGroup() {
   	this.service.getAllGroup()
   	            .subscribe(result => {
@@ -60,7 +60,7 @@ export class AddComponent implements OnInit {
   	              }
   	            })
   }
-
+  // 关键词列表
   getKeywordList() {
   	this.service.getKeywordList()
   	            .subscribe(result => {
@@ -69,9 +69,10 @@ export class AddComponent implements OnInit {
   	              }
   	            })
   }
+  // 提交
   handleSubmit() {
     if (this.taskFrm.valid) {
-      this.service.updateTask(Object.assign(this.taskFrm.value,{
+      this.service.addTask(Object.assign({}, this.taskFrm.value, {
       	platCd: this.taskFrm.value.platCd.join(','),
       	kwNameId: this.taskFrm.value.kwNameId.join(','),
       	attachFileIds: ''
@@ -82,14 +83,19 @@ export class AddComponent implements OnInit {
       })
     }
   }
+  // 上传前文件过滤
   beforeUpload(file: File): boolean {
   	let is50:boolean = true
   	if(file.size/1024/1024 > 50) {
-  	  is50 = false
   	  this.message.error('上传文件大小不能超过50MB!')
+      return is50
   	}
-  	return is50
+  	// return is50
   }
+  handleFileSuccess(e:any) {
+    console.log(e)
+  }
+  // 日期控件清空事件
   handleClearStart(e:any) {
     this.taskFrm.setValue(Object.assign(this.taskFrm.value,{
       dataCollectStartDate: ''
@@ -101,17 +107,19 @@ export class AddComponent implements OnInit {
       dataCollectEndDate: ''
     }))
   }
-
+  // 企业组改变事件
   handleGroupChange(e:any) {
     this.taskFrm.setValue(Object.assign(this.taskFrm.value,{
       comGroupId: e
     }))
   }
+  // 平台改变事件
   handlePlatChange(e:any) {
     this.taskFrm.setValue(Object.assign(this.taskFrm.value,{
       platCd: e
     }))
   }
+  // 关键词改变事件
   handleKeywordChange(e:any) {
     this.taskFrm.setValue(Object.assign(this.taskFrm.value,{
       kwNameId: e
