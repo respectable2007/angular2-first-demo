@@ -20,23 +20,23 @@ export class AddComponent implements OnInit {
   keywordList:any[] = [];
   
   upload = upload;
-  constructor(private service: LoginService,
+  constructor(@Inject(forwardRef(() => FormBuilder)) private formBuilder: FormBuilder,
+              private service: LoginService,
   	          private router: Router,
-  	          @Inject(forwardRef(() => FormBuilder)) private formBuilder: FormBuilder,
   	          @Inject(forwardRef(() => ElMessageService)) private message: ElMessageService) { }
 
   ngOnInit() {
-  	this.taskFrm = this.formBuilder.group({
-  	  taskName: ['', this.taskNameValidator],
-  	  dataCollectStartDate: ['', this.startValidator],
-  	  dataCollectEndDate: ['', this.endValidator],
-  	  comGroupId: ['', this.comGroupIdValidator],
-  	  platCd: [[], this.platCdValidator],
-  	  kwNameId: [[], this.kwNameIdValidator]
-  	})
   	this.getPlatList()
   	this.getAllGroup()
   	this.getKeywordList()
+    this.taskFrm = this.formBuilder.group({
+      taskName: ['', this.taskNameValidator],
+      dataCollectStartDate: ['', this.dataCollectStartDateValidator],
+      dataCollectEndDate: ['', this.endValidator],
+      comGroupId: ['', this.comGroupIdValidator],
+      platCd: [[], this.platCdValidator],
+      kwNameId: [[], this.kwNameIdValidator]
+    })
   }
 
   handleBack() {
@@ -90,13 +90,6 @@ export class AddComponent implements OnInit {
   	}
   	return is50
   }
-  // 验证
-  messageCtrl(item: string):string {
-  	if(this.taskFrm.controls[item]) return
-  	const control:AbstractControl = this.taskFrm.controls[item]
-    return control.dirty && control.hasError('message') ? control.errors.message : ''
-  }
-
   handleClearStart(e:any) {
     this.taskFrm.setValue(Object.assign(this.taskFrm.value,{
       dataCollectStartDate: ''
@@ -109,24 +102,46 @@ export class AddComponent implements OnInit {
     }))
   }
 
+  handleGroupChange(e:any) {
+    this.taskFrm.setValue(Object.assign(this.taskFrm.value,{
+      comGroupId: e
+    }))
+  }
+  handlePlatChange(e:any) {
+    this.taskFrm.setValue(Object.assign(this.taskFrm.value,{
+      platCd: e
+    }))
+  }
+  handleKeywordChange(e:any) {
+    this.taskFrm.setValue(Object.assign(this.taskFrm.value,{
+      kwNameId: e
+    }))
+  }
+  // 验证
+  messageCtrl(item: string):string {
+    if(!this.taskFrm.controls[item]) return
+    const control:AbstractControl = this.taskFrm.controls[item]
+    return control.invalid ? control.errors.message : ''
+  }
+
   private taskNameValidator = (control:FormGroup):res => {
-    if(control.value.length > 10) {
+    if(control.value.length > 100) {
       return { message: '任务名称不超过100位'}
     }
   }
-  private startValidator = (control:FormGroup):res => {
-  	if (control.value && this.taskFrm.value.dataCollectEndDate) {
+  private dataCollectStartDateValidator = (control:FormGroup):res => {
+  	if (control.value && this.taskFrm.controls['dataCollectEndDate'].value) {
   		let start = control.value.replace(/-/g, '/')
-  		let end = this.taskFrm.value.dataCollectEndDate.replace(/-/g, '/')
+  		let end = this.taskFrm.controls['dataCollectEndDate'].value.replace(/-/g, '/')
   		if (Date.parse(start) > Date.parse(end)) {
   		  return { message: '结束时间应大于起始时间'}
   		}
   	}
   }
   private endValidator = (control:FormGroup):res => {
-  	if (control.value && this.taskFrm.value.dataCollectStartDate) {
+  	if (control.value && this.taskFrm.controls['dataCollectStartDate'].value) {
   		let end = control.value.replace(/-/g, '/')
-  		let start = this.taskFrm.value.dataCollectStartDate.replace(/-/g, '/')
+  		let start = this.taskFrm.controls['dataCollectStartDate'].value.replace(/-/g, '/')
   		if (Date.parse(start) > Date.parse(end)) {
   		  return { message: '结束时间应大于起始时间'}
   		}
@@ -138,7 +153,6 @@ export class AddComponent implements OnInit {
         return { message: '监测企业组和监测平台至少要填一项'}
       }
   	}
-
   }
   private platCdValidator = (control:FormGroup):res => {
   	if (this.taskFrm) {
