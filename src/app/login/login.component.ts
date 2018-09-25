@@ -1,4 +1,4 @@
-import { Component, forwardRef, Inject, OnInit, ViewEncapsulation } from '@angular/core'
+import { Component, forwardRef, Inject, OnInit, ViewEncapsulation, ViewChild } from '@angular/core'
 import { FormBuilder, Validators, FormGroup, FormControl, AbstractControl } from '@angular/forms'
 import { ElNotificationService } from 'element-angular/release/element-angular.module';
 import { Router } from '@angular/router';
@@ -7,7 +7,7 @@ import { MD5 } from '../../assets/md5';
 // import { ElModule } from 'element-angular';
 import { LocalStorageService } from 'angular-web-storage';
 
-
+// @ViewChild('input') input;
 class LoginForm {
   name: string;
   password: string;
@@ -44,7 +44,12 @@ export class LoginComponent implements OnInit {
       name: [ '', [this.nameValidator]]
     })
   }
-  
+  ngAfterViewInit() {
+    // console.log(document.getElementsByClassName('el-input__inner')[0])
+    // let input = document.querySelector('.el-input__inner')
+    // input.focus()
+    // this.input.nativeElement.focus()
+  }
   // 登录
   submit(): void{
     let user = new LoginForm();
@@ -61,52 +66,26 @@ export class LoginComponent implements OnInit {
           }
         })
   }
-  
-  // ctrl(item: string): AbstractControl {
-  //   return this.validateForm.controls[item]
-  // }
-  
-  // statusCtrl(item: string): string {
-  //   if (!this.validateForm.controls[item]) return
-  //   const control:AbstractControl = this.validateForm.controls[item]
-  //   return control.dirty && control.hasError('status') ? control.errors.status: ''
-  // }
-
-  // messageCtrl(item: string): string {
-  //   if (!this.validateForm.controls[item]) return
-  //   const control: AbstractControl = this.validateForm.controls[item]
-  //   return control.dirty && control.hasError('message') ? control.errors.message : ''
-  // }
-  
+  handleLogin(e:any):void{
+    if (e.keyCode === 13) {
+      if (!this.validateForm.value.name) {
+        this.notify.error('请输入账号名', '提示')
+        return
+      }
+      if (!this.validateForm.value.password) {
+        this.notify.error('请输入密码', '提示')
+      }
+      if (this.validateForm.value.password && this.validateForm.value.name) {
+        this.submit()
+      }
+      console.log(11111)
+    }
+  }
   private nameValidator = (control: FormControl): validateResult  => {
-    // if (!control.value) {
-    //   return { status: 'error', message: '账号是必填的'}
-    // }
-
-    // if (control.value.length < 4) {
-    //   return { status: 'error', message: '账号位数不小于4'}
-    // }
-
-    // if (control.value.length > 10) {
-    //   return { status: 'error', message: '账号位数不超过10'}
-    // }
-
     return {status: 'success'}
   }
 
   private passwordValidator = (control: FormControl): validateResult => {
-    // if (!control.value) {
-    //   return { status: 'error', message: '密码是必填的'}
-    // }
-
-    // if (control.value.length < 8) {
-    //   return { status: 'error', message: '密码位数不小于8'}
-    // }
-
-    // if (control.value.length > 16) {
-    //   return { status: 'error', message: '密码位数不超过16'}
-    // }
-
     return {status: 'success'}
   }
 }

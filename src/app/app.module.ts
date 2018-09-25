@@ -14,7 +14,7 @@ import { AuthService } from './service/auth.service';
 
 
 import { RouterModule } from '@angular/router';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './app.route.module';
 import { LayoutModule } from './layout/layout.module';
 
 import { AngularWebStorageModule } from 'angular-web-storage';

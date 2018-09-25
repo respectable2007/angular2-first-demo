@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule }    from '@angular/forms';
 import { ElModule } from 'element-angular';
  
 import { LayoutService }    from './layout.service';
-import { LayoutRoutingModule }    from './layout-routing.module';
+import { LayoutRoutingModule }    from './layout.route.module';
 
 import { PasswordComponent }    from './password/password.component';
 import { AuthoritionComponent }    from './auth/authorition/authorition.component';

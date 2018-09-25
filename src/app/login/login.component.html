@@ -3,14 +3,14 @@
     <h1>杭州某区某局<br/>网络交易大数据监测平台</h1>
     <el-form [formGroup]='validateForm' el-class='login-form'>
       <el-form-item >
-        <el-input formControlName='name' placeholder='请输入账号'>
+        <el-input formControlName='name' placeholder='请输入账号' input>
           <ng-template #prepend>
             <i class="mdui-icon material-icons">&#xe8a6;</i>
           </ng-template>
         </el-input>
       </el-form-item>
       <el-form-item >
-        <el-input formControlName='password' native-type='password' placeholder='请输入密码'>
+        <el-input formControlName='password' native-type='password' placeholder='请输入密码' (keyup)='handleLogin($event)'>
            <ng-template #prepend>
             <i class="mdui-icon material-icons rotate">&#xe0da;</i>
           </ng-template>

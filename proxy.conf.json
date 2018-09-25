@@ -2,6 +2,7 @@
 	"/dmss":{
 		"target": "http://10.2.30.191:28080",
 		"secure": false,
+		"changeOrigin":true,
 		"pathRewrite": { "^/dmss": "/dmss"}
 	}
 }
