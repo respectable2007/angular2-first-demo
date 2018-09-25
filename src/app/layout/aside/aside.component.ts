@@ -15,7 +15,7 @@ export class AsideComponent implements OnInit {
 
   ngOnInit() {
 	  this.menu = this.local.get('menu');
-	  if (!this.menu) {
+	  if (!this.menu || !this.menu.length) {
 	    this.service.menu()
         .subscribe(user => {
           if (user.code === 200) {

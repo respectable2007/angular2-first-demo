@@ -17,8 +17,9 @@ export class AuthService implements CanActivate {
   	this.loginService.menu()
         .subscribe(user => {
           if (user.code === 200) {
-            this.router.navigate(['layout/authorition']);
             this.local.set('menu', user.data);
+            let path = 'layout' + user.data[0].menuUrl
+            this.router.navigate([path]);
           } 
         })
   	return true;
