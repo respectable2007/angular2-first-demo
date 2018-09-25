@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalStorageService } from 'angular-web-storage';
 
 @Component({
   selector: 'app-not-found',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotFoundComponent implements OnInit {
 
-  constructor() { }
+  constructor(private local: LocalStorageService) { }
 
   ngOnInit() {
+  	this.local.set('isLogin', false)
+  	this.local.set('username', '')
   }
 
 }

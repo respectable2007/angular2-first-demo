@@ -43,6 +43,8 @@ export class LoginComponent implements OnInit {
       password: [ '', [this.passwordValidator]],
       name: [ '', [this.nameValidator]]
     })
+    this.local.set('isLogin', false)
+    this.local.set('username', '')
   }
   ngAfterViewInit() {
     // console.log(document.getElementsByClassName('el-input__inner')[0])
@@ -78,7 +80,6 @@ export class LoginComponent implements OnInit {
       if (this.validateForm.value.password && this.validateForm.value.name) {
         this.submit()
       }
-      console.log(11111)
     }
   }
   private nameValidator = (control: FormControl): validateResult  => {

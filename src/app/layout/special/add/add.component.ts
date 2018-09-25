@@ -93,7 +93,7 @@ export class AddComponent implements OnInit {
   	// return is50
   }
   handleFileSuccess(e:any) {
-    console.log(e)
+    // console.log(e)
   }
   // 日期控件清空事件
   handleClearStart(e:any) {

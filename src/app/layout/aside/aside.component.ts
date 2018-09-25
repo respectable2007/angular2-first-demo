@@ -15,6 +15,14 @@ export class AsideComponent implements OnInit {
 
   ngOnInit() {
 	  this.menu = this.local.get('menu');
+	  if (!this.menu) {
+	    this.service.menu()
+        .subscribe(user => {
+          if (user.code === 200) {
+            this.menu = user.data
+          } 
+        })
+	  }
   }
 
 }
