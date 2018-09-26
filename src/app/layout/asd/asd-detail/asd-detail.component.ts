@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute} from '@angular/router';
 import { LoginService } from '../../../service/login.service';
 
 @Component({
   selector: 'app-asd-detail',
   templateUrl: './asd-detail.component.html',
-  styleUrls: ['./asd-detail.component.css']
+  styleUrls: ['./asd-detail.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AsdDetailComponent implements OnInit {
 
@@ -57,6 +58,6 @@ export class AsdDetailComponent implements OnInit {
     window.print()
     window.document.body.innerHTML = ""
     window.document.body.appendChild(oldhtml)
-    window.document.body.getElementsByTagName('app-asd-detail')[0].appendChild(printer)
+    window.document.body.getElementsByClassName('el-content')[0].appendChild(printer)
   }
 }

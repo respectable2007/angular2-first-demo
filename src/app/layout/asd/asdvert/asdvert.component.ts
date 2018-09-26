@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, forwardRef, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Inject, forwardRef, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { FormGroup, AbstractControl, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { LoginService } from '../../../service/login.service';
 import { Router } from '@angular/router';
@@ -39,6 +39,10 @@ export class AsdvertComponent implements OnInit {
   		dataCollectEndDate: ['', this.dataCollectEndDateValidator]
   	})
     this.getPlatList()
+  }
+  
+  ngAfterViewInit() {
+    this.handleSearch()
   }
 
   handleDetail(scope:any) {

@@ -1,6 +1,9 @@
-<el-button type='success' (click)='handleBack()'>返回</el-button>
-<el-button type='success' (click)='handlePrint()'>打印</el-button>
-<div class="container print">
+<div class="el-content">
+  <div class="el-content-header">
+    <el-button class='el-back' type='success' (click)='handleBack()'>返回</el-button>
+    <el-button class='el-right' type='success' (click)='handlePrint()'>打印</el-button>
+  </div>
+  <div class="container print">
 	<el-form label-width='160px'>
 		<div>
 		  <h3>企业信息</h3>
@@ -66,4 +69,5 @@
 		  </el-form-item>
 		</div>
 	</el-form>
+  </div>
 </div>

@@ -4,3 +4,14 @@
 .searchFrm form.el-form.el-form--label-right{
   padding-top: 30px;
 }
+.el-form .el-button{
+  width: 100px;
+  margin-top: 0px;
+  height: 40px;
+}
+.el-select{
+  width: 100%;
+}
+.el-center{
+  text-align: center;
+}

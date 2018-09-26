@@ -15,7 +15,7 @@
   <div el-row>
     <div el-col span='9'>
       <el-form-item label='平台'>
-        <el-select placeholder='请选择平台' style='width:100%' popper-class='dmss-select' formControlName='platName'>
+        <el-select placeholder='请选择平台' popper-class='dmss-select' formControlName='platName'>
           <el-option *ngFor='let item of platList'
                      [label]='item.platName'
                      [value]='item.platName'></el-option>
@@ -30,7 +30,7 @@
                   <el-date-picker formControlName='pubStartDate' placeholder='起始时间' (clear-click)='handleClearDataStart($event)'></el-date-picker>
             </el-form-item>
           </div>
-          <div el-col span='2'>至</div>
+          <div el-col span='2' class="el-center">至</div>
           <div el-col span='11'>
             <el-form-item  label-width='0px' [error]='messageCtrl("pubEndDate")'>
                   <el-date-picker formControlName='pubEndDate' placeholder='结束时间' (clear-click)='handleClearDataEnd($event)'></el-date-picker>
@@ -49,7 +49,7 @@
                   <el-date-picker formControlName='dataCollectStartDate' placeholder='起始时间' (clear-click)='handleClearDataColStart($event)'></el-date-picker>
             </el-form-item>
           </div>
-          <div el-col span='2'>至</div>
+          <div el-col span='2' class="el-center">至</div>
           <div el-col span='11'>
             <el-form-item  label-width='0px' [error]='messageCtrl("dataCollectEndDate")'>
                   <el-date-picker formControlName='dataCollectEndDate' placeholder='结束时间' (clear-click)='handleClearDataColEnd($event)'></el-date-picker>
