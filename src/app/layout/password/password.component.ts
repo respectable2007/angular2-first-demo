@@ -18,7 +18,8 @@ const pwd:RegExp = /^[0-9a-zA-Z]+$/
 @Component({
   selector: 'app-password',
   templateUrl: './password.component.html',
-  styleUrls: ['./password.component.css']
+  styleUrls: ['./password.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class PasswordComponent implements OnInit {
   pwdFrm: FormGroup;
