@@ -10,6 +10,7 @@ import { LocalStorageService } from 'angular-web-storage';
 export class AsideComponent implements OnInit {
   
   menu:any[] = [];
+  activeIndex:number = 0;
   constructor(private service:LoginService,
   	          private local:LocalStorageService) { }
 
@@ -20,9 +21,12 @@ export class AsideComponent implements OnInit {
         .subscribe(user => {
           if (user.code === 200) {
             this.menu = user.data
+            this.activeIndex = user.data[0].id
           } 
         })
-	  }
+	  } else {
+      this.activeIndex = this.local.get('menu')[0].id
+    }
   }
 
 }

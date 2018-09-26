@@ -18,7 +18,8 @@ class result{
 @Component({
   selector: 'app-auth-add',
   templateUrl: './auth-add.component.html',
-  styleUrls: ['./auth-add.component.css']
+  styleUrls: ['./auth-add.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AuthAddComponent implements OnInit, AfterViewInit {
 

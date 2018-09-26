@@ -1,5 +1,8 @@
-<el-button type="primary" (click)='handleBack()'>返回</el-button>
-<el-form [formGroup]="roleFrm" label-width="150px" [show-message]="true" >
+<div class="el-content">
+  <div class="el-content-header">
+    <el-button class='el-back' type="primary" (click)='handleBack()'>返回</el-button>
+  </div>
+<el-form [formGroup]="roleFrm" label-width="150px" [show-message]="true" class='authFrm'>
 
   <el-form-item label="角色名称" [required]="true"
     [status]="statusCtrl('roleName')" [error]="messageCtrl('roleName')">
@@ -16,3 +19,4 @@
   </el-form-item>
   
 </el-form>
+<div>

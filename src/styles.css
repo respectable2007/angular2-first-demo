@@ -38,6 +38,7 @@
 @import "~element-angular/theme/index.css";
 html,body,.el-container{
   height: 100%;
+  min-width: 1380px;
 }
 .el-header .user .el-dropdown span{
   color: #fff;
@@ -46,4 +47,47 @@ html,body,.el-container{
   max-height: 300px;
   overflow-y: scroll;
   overflow-x: hidden;
+}
+.el-main{
+  background-color: #eff3f6;
+  overflow: hidden;
+}
+.el-content{
+  border:1px solid #e6eaee;
+  background-color: #fff;
+}
+.el-content-header{
+  border-bottom:1px solid #e6eaee;
+  height: 60px;
+  line-height: 60px;
+}
+.el-content-header .el-button.el-right{
+  float: right;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+.el-content-header .el-button.el-back{
+  background:transparent;
+  color:#2399f2;
+  text-decoration: underline;
+  border:none;
+}
+.el-table{
+  width: 100% !important;
+}
+.el-pagination{
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+.el-pagination__total.ng-star-inserted{
+  position: absolute;
+  left: 10px;
+}
+.el-content el-pagination-size{
+  position: absolute;
+  left: 80px;
+}
+.aside-container .el-menu{
+  border-right: 0;
 }

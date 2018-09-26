@@ -1,11 +1,11 @@
 <div class="aside-container">
-    <el-menu model="2" class="el-menu-vertical-demo" background-color='#304156' text-color='#fff'>
+    <el-menu [model]="activeIndex" class="el-menu-vertical-demo" background-color='#304156' text-color='#fff'>
       <div *ngFor='let item of menu'>
         <el-submenu *ngIf='item.subMenuList.length > 0' [index]='item.id'>
           <ng-template #title>
             <i class="el-icon-message"></i>{{item.menuName}}
           </ng-template>
-          <el-menu-item-group title=''>
+          <el-menu-item-group>
             <el-menu-item [index]='subItem.id' *ngFor='let subItem of item.subMenuList' [to]='"/layout" + item.menuUrl + "/" + subItem.menuUrl'>
               {{subItem.menuName}}
             </el-menu-item>
