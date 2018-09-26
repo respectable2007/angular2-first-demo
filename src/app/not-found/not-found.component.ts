@@ -13,6 +13,7 @@ export class NotFoundComponent implements OnInit {
   ngOnInit() {
   	this.local.set('isLogin', false)
   	this.local.set('username', '')
+  	this.local.set('menu', [])
   }
 
 }
