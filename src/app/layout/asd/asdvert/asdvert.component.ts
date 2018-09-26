@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, forwardRef } from '@angular/core';
+import { Component, OnInit, Inject, forwardRef, ViewEncapsulation } from '@angular/core';
 import { FormGroup, AbstractControl, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { LoginService } from '../../../service/login.service';
 import { Router } from '@angular/router';
@@ -9,7 +9,8 @@ class res {
 @Component({
   selector: 'app-asdvert',
   templateUrl: './asdvert.component.html',
-  styleUrls: ['./asdvert.component.css']
+  styleUrls: ['./asdvert.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AsdvertComponent implements OnInit {
   

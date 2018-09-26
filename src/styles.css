@@ -50,7 +50,7 @@ html,body,.el-container{
 }
 .el-main{
   background-color: #eff3f6;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 .el-content{
   border:1px solid #e6eaee;
@@ -86,7 +86,7 @@ html,body,.el-container{
 }
 .el-content el-pagination-size{
   position: absolute;
-  left: 80px;
+  left: 100px;
 }
 .aside-container .el-menu{
   border-right: 0;

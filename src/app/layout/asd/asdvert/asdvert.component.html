@@ -1,7 +1,8 @@
-<el-form [formGroup]="searchFrm" label-width="150px" [show-message]="true" >
+<div class="el-content">
+<el-form [formGroup]="searchFrm" label-width="150px" [show-message]="true" class='searchFrm'>
   <div el-row>
     <div el-col span='9'>
-      <el-form-item label='企业名称' [error]='messageCtrl("comName")' [required]='true'>
+      <el-form-item label='企业名称' [error]='messageCtrl("comName")'>
         <el-input formControlName='comName' placeholder='请输入企业名称'></el-input>
       </el-form-item>
     </div>
@@ -64,8 +65,13 @@
       </el-form-item>
   </div>
 </el-form>
-<el-button type='success' (click)='handleExport()'>导出</el-button>
-<el-table [model]='asdList' center='all'>
+</div>
+<div class="el-content last">
+<div class="el-content-header">
+<el-button class='el-right' type='success' (click)='handleExport()'>导出</el-button>
+</div>
+
+<el-table [model]='asdList' center='all' [stripe]='true'>
   <el-table-column label='企业名称' model-key='comName'></el-table-column>
   <el-table-column label='店铺名称' model-key='shopName'></el-table-column>
   <el-table-column label='商品名称' model-key='productName'></el-table-column>
@@ -89,3 +95,4 @@
 </el-table>
 <el-pagination [total]='page.recordTotal' [page-sizes]='[10,20,30,40]' 
   [layout]="['prev', 'pager', 'next', 'size', 'total']" (modelChange)='handlePageNum($event)'></el-pagination>
+</div>
