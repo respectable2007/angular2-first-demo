@@ -1,5 +1,8 @@
-<el-button type='success' (click)='handleAdd()'>新增</el-button>
-<el-table [model]='specialList' center='all'>
+<div class="el-content">
+  <div class="el-content-header">
+    <el-button class='el-right' type='success' (click)='handleAdd()'>新增</el-button>
+  </div>
+  <el-table [model]='specialList' center='all'>
 	<el-table-column label='任务ID' model-key='id'></el-table-column>
 	<el-table-column label='任务名称' model-key='taskName'></el-table-column>
 	<el-table-column label='数据采集起止时间'>
@@ -23,5 +26,7 @@
 	<el-table-column label='关键词名称' model-key='kwName'></el-table-column>
 	<el-table-column label='任务创建人' model-key='creatorName'></el-table-column>
 	<el-table-column label='任务创建时间' model-key='createTime'></el-table-column>
-</el-table>
-<el-pagination [total]='page.recordTotal' [page-sizes]='[10,20,30,40]' [layout]="['prev','pager','next','total']" (modelChange)='handlePageNum($event)'></el-pagination>
+  </el-table>
+  <el-pagination [total]='page.recordTotal' [page-sizes]='[10,20,30,40]' 
+  [layout]="['prev','pager','next','total']" (modelChange)='handlePageNum($event)'></el-pagination>
+</div>
